@@ -53,7 +53,9 @@
                 <label class="form-label" >Select Admin</label>
                 <select name="adminUserName" class="form-control">
                     @foreach ($admin as $userAdmin)
-                        <option value="{{$userAdmin->adminUserName}}">{{$userAdmin->adminUserName}}</option>
+                        <option value="{{$userAdmin->adminUserName}}">
+                        <?php var_dump($userAdmin) ?>    
+                        </option>
                     @endforeach
                 </select>
                 <button type="submit" name="registerAdmin" class="btn btn-success"

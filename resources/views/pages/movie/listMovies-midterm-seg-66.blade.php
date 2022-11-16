@@ -1,11 +1,11 @@
-@extends('layouts/layout')
+@extends("pages/admin/adminProfile-midterm-seg-66")
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
-@section("content")
-<div class="container">
-    <div class="movies-header">
+@section("innerContent")
+<div class=" subPage" >
+    <div class="container movies-header" style="margin: 10rem auto 0">
         <h3>All Movies</h3>
         <div>
             @if(Session::has('success'))

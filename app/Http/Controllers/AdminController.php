@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +19,11 @@ class AdminController extends Controller
 
     public function addAdmin(Request $request){
 
+        $profile_picture = time(). "." . request()->profilePicture->getClientOriginalExtension(); 
+        $cover_picture = time(). "." . request()->coverPicture->getClientOriginalExtension(); 
+        request()->profilePicture->move(public_path("images/profilePictures"), $profile_picture);
+        request()->coverPicture->move(public_path("images/coverPictures"), $cover_picture);
+ 
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
@@ -33,6 +39,8 @@ class AdminController extends Controller
             $admin->adminUserName = $request->adminUserName;
             $admin->email = $request->email;
             $admin->password = $request->password;
+            $admin->profilePicture = $profile_picture;
+            $admin->coverPicture = $cover_picture;
             $admin->phone = $request->phone;
             if($request->isAdmin == "true"){
                 $admin->isAdmin = true;
@@ -68,11 +76,13 @@ class AdminController extends Controller
         $adminSignIn = $admin->where('email','=', $admin->adminUserName)
                               ->orWhere('adminUserName', $admin->adminUserName)
                               ->where('password','=', $admin->password)
-                              ->get();
+                              ->first();
 
-        if($adminSignIn){
+        if($adminSignIn != null && ($adminSignIn->password == $request->password)){
             $userData = $request->input();
             $request->session()->put('adminUserName', $userData['adminUserName']);
+            $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
+            $request->session()->put('adminCoverPicture', $adminSignIn['coverPicture']);
             return redirect("/admin-profile/{$admin->adminUserName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");

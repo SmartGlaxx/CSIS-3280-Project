@@ -11,7 +11,7 @@ class MovieController extends Controller
     public function getMovies($playlistId, $themeColor, $admin, Request $request){
     $movies = Http::withHeaders([
         'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-        'X-RapidAPI-Key' => 'b95f1a2863msh091c2e62f4baa54p12892ejsn0356392970bf'
+        'X-RapidAPI-Key' => '1868d35fdcmsh44fa58761090c79p1b3d23jsn2c67cb13e1f1'
     ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
     ['query' => "*"]);
     $playlistData = Playlist::where('id','=', $playlistId)
@@ -21,6 +21,7 @@ class MovieController extends Controller
     $currentPlaylistData = $playlist->where('id',$playlistId)->first();
     $request->session()->put('currentPlaylistData', $currentPlaylistData);
     $request->session()->put('currentThemeColor', $themeColor);
+    
     return view("pages/movie/listMovies-midterm-seg-66")->with(['movies'=> json_decode($movies, true), 'playlistData'=> $playlistData]);
 
     }

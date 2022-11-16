@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('adminUserName')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('profilePicture')->nullable();
+            $table->string('coverePicture')->nullable();
             $table->string('phone');
             $table->boolean('isAdmin');
             $table->timestamps();

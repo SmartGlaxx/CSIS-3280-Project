@@ -2,8 +2,15 @@ body{
     color: rgb(220,220,220);
     background-color: rgb(10,10,20);
 }
+.title{
+    /* width: 100%; */
+    font-size: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(to top right, rgb(20,20,25), rgb(50,50,60));
+}
 .main-container{
-    margin: 2rem;
+    /* margin: 0.5rem; */
+    padding-top: 0rem;
 }
 .movies-container{
     background-color: rgb(20,20,25);
@@ -55,6 +62,12 @@ body{
     object-fit: cover;
 }
 
+.no-movies{
+    margin: 2rem;
+    font-size: 1.1rem;
+    color: #eef;
+}
+
 /* profile */
 .profile-header{
     position: relative;
@@ -64,8 +77,9 @@ body{
     align-items: center;
     border-radius: 10rem;
     padding: 1rem;
-    margin: 1rem 0;
-    background-color: rgb(20,20,25);
+    margin: 0;
+    padding-left: 2rem;
+    background-color: rgba(20,20,25, 0.9);
 }
 .profile-header div{
     display: flex;
@@ -104,3 +118,24 @@ body{
     float: right
 }
 
+.cover-picture{
+    position: absolute;
+    height: 10rem;
+    width: 100vw;
+    object-fit: cover;
+    
+}
+
+/* subPage */
+.subPage{
+    margin-top: 13rem;
+}
+
+
+/* admin */
+.admin-page-top{
+    position: absolute; 
+    z-index: 100;
+    top: 0; 
+    width: 100%
+}

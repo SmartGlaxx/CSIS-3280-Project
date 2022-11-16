@@ -1,10 +1,10 @@
-@extends('layouts/layout')
+@extends("pages/admin/adminProfile-midterm-seg-66")
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
-@section("content")
-        <div class="container">
+@section("innerContent")
+        <div class="container subPage">
         <h3>Create Playlist</h3>
         {{-- <a href="{{url('list-users')}}" class="btn btn-primary">View All Users</a> --}}
         @if(Session::has("success"))
@@ -24,7 +24,7 @@
                 <div class="alert alert-danger">{{$message}}</div> 
                 @enderror
                 <label class="form-label" >Theme color</label>
-                <input type="text" name="themeColor" value="{{old('themeColor')}}" class="form-control"/>
+                <input type="color" name="themeColor" value="{{old('themeColor')}}" class="form-control"/>
                 @error("themeColor")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror

@@ -1,10 +1,10 @@
-@extends("layouts/layout")
+@extends("pages/admin/adminProfile-midterm-seg-66")
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
-@section("content")
-    <div class="container">
+@section("innerContent")
+    <div class="container subPage">
         <div class="playlist-header">
         <h3>{{session('adminUserName')}}'s Playlists</h3>
         </div>
@@ -33,6 +33,7 @@
             @if(Session::has("allMovies"))
                 <?php $allMovies = Session::get("allMovies") ?>
             @endif
+            <?php $count = 0; ?>
             @if(Session::has("allMovies"))
                 @foreach($allMovies as $movie)
                     @foreach($movieIds as $movieId)
@@ -52,9 +53,14 @@
                                 <td>{{$movieSynopsis}}</td>
                             </tr>
                         </table>
+                        <?php $count++; ?>
                         @endif
                     @endforeach
                 @endforeach
+            @if($count == 0)
+                <div class='no-movies'>No movies in this playlist <br/>
+                    <a href="/list-movies/{id}/{themeColor}/{adminUserName}" class="btn btn-success">Add movie</a></div>
+            @endif
             @endif
         </div>
     </div>

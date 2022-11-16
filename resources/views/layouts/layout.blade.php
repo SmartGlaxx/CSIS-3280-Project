@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css'); }} " />
     <title>@yield("header")</title>
 </head>
-<body class="container main-container">
-    <h2 class="">Movies Club</h2>
+<body class="main-container">
     @yield("content")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

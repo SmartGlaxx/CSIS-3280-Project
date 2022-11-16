@@ -20,8 +20,8 @@ class PlaylistController extends Controller
         ]);
         $playList = new Playlist();
         $playList->playlistName = $request->playlistName;
-        $playList->adminUserName = $request->adminEmail; 
-        $playList->themeColor = $request->themeColor;
+        $playList->adminUserName = $request->adminUserName; 
+        $playList->themeColor = substr($request->themeColor, 1);
 
         $playList->save();
 
@@ -51,7 +51,7 @@ class PlaylistController extends Controller
     public function showMoviesInPlayList($playlistId, $playlistColor, $adminUserName){
         $movies = Http::withHeaders([
             'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-            'X-RapidAPI-Key' => 'b95f1a2863msh091c2e62f4baa54p12892ejsn0356392970bf'
+            'X-RapidAPI-Key' => '1868d35fdcmsh44fa58761090c79p1b3d23jsn2c67cb13e1f1'
         ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
         ['query' => "*"]);
 
