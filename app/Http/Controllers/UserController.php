@@ -8,6 +8,10 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function userProfile(){
+        return view("pages/user/userProfile-midterm-seg-66");
+    }
+
     public function addUserPage(){
         $admin = Admin::get();
         return view("pages/user/addUser-midterm-seg-66", compact('admin'));
@@ -40,6 +44,38 @@ class UserController extends Controller
             return redirect()->back()->with("success","User account created successfully");
         }else{
             return redirect()->back()->with("failed","Password mismatch");
+        }
+
+    }
+
+    public function signInUserPage(Request $request){
+    return view("pages/user/signInUser-miderm-seg-66");
+    }
+      
+
+    public function signInUserFunction(Request $request){
+      
+        $request->validate([
+            'userUserName' => 'required',
+            'password' => 'required',
+        ]);
+        $user = new User();
+        $user->userName = $request->userUserName;
+        $user->password = $request->password;
+        $userSignIn = $user->where('email','=', $user->userName)
+                              ->orWhere('userName', $user->userName)
+                              ->where('password','=', $user->password)
+                              ->first();
+
+        if($userSignIn != null && ($userSignIn->password == $request->password)){
+            $userData = $request->input();
+            $request->session()->put('userName', $userData['userUserName']);
+            // $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
+            // $request->session()->put('adminCoverPicture', $adminSignIn['coverPicture']);
+            $request->session()->put('isAdmin', 0);
+            return redirect("/user-profile/{$user->userName}");
+        }else{
+            return redirect()->back()->with("failed","Email or password incorrect");
         }
 
     }

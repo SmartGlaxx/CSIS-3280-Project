@@ -25,10 +25,18 @@ Route::get("/admin-profile/{id}",[AdminController::class, "adminProfile"]);
 
 //show add user form
 Route::get('/add-user', [UserController::class, "addUserPage"]);
-//show all user list
-Route::get("/list-users", [UserController::class, "listUsers"]);
 // function to operate on users
 Route::post('/add-user', [UserController::class, "addUser"]);
+//show sign-in user form
+Route::get('/sign-in-user', [UserController::class, "signInUserPage"]);
+//sign-in user function
+Route::post('/sign-in-user', [UserController::class, "signInUserFunction"]);
+//show all user list
+Route::get("/list-users", [UserController::class, "listUsers"]);
+//show user profile
+Route::get("/user-profile/{id}",[UserController::class, "userProfile"]);
+
+
 
 
 

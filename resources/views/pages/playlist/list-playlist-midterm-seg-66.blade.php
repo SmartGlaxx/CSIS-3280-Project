@@ -6,22 +6,26 @@
 @section("innerContent")
     <div class="container subPage">
         <div class="playlist-header">
-        <h3>{{session('adminUserName')}}'s Playlists</h3>
+        <h3>{{session('userName')}}'s Playlists</h3>
         </div>
-        <h5>Select a playlist to add movies to</h5>
+        <?php echo count($playlists) > 0 ? 
+        '<h5>Select a playlist to add movies to</h5>'
+        : 
+        '<h5>No Playlist yet. First crate a playlist <a href="/create-playlist">here</a></h5>'
+        ?>
         <table>
         @foreach ($playlists as $playlist)
             <?php 
                 $playlistName = $playlist['playlistName'];
                 $playlistId = $playlist['id'];
                 $playlistColor = $playlist['themeColor'];
-                $adminUserName = session('adminUserName');
+                $userName = session('userName');
             ?>
                 <tr>
                     <td>{{$playlistName}}</td>
-                    <td><a href="/list-movies/{{$playlistId}}/{{$playlistColor}}/{{$adminUserName}}"
+                    <td><a href="/list-movies/{{$playlistId}}/{{$playlistColor}}/{{$userName}}"
                     class="btn btn-success">Add movie</a>
-                    <a href="/show-playlist-movies/{{$playlistId}}/{{$playlistColor}}/{{$adminUserName}}"class="btn btn-primary">See movies in this playlist</a>
+                    <a href="/show-playlist-movies/{{$playlistId}}/{{$playlistColor}}/{{$userName}}"class="btn btn-primary">See movies in this playlist</a>
                     </td> 
                 </tr>
         @endforeach

@@ -5,8 +5,8 @@
 
 @section("content")
         <div class="container">
-        <h3>Admin Sign-in</h3>
-        <a href="{{url('list-admins')}}" class="btn btn-primary">View All Admins</a>
+        <h3>User Sign-in</h3>
+        <a href="{{url('list-admins')}}" class="btn btn-primary">View All Users</a>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
         @endif
@@ -14,11 +14,11 @@
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
         
-            <form method="post" action="{{url('sign-in-admin')}}" class="form-control">
+            <form method="post" action="{{url('sign-in-user')}}" class="form-control">
                 @csrf
                 <label class="form-label" >Email or Username</label>
-                <input type="text" name="adminUserName" value="{{old('adminUserName')}}" class="form-control"/>
-                @error("adminUserName")
+                <input type="text" name="userUserName" value="{{old('userUserName')}}" class="form-control"/>
+                @error("userUserName")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <label class="form-label" >Password</label>

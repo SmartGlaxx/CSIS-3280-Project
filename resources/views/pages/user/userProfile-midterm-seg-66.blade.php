@@ -9,7 +9,7 @@
     $profilePicture = session('profilePicture');
     $coverPicture = session('coverPicture');
     $isAdmin = session('isAdmin');
-?>
+?>  
 <div class="admin-page-top">
 <img src="{{url('images/coverPictures/'. $coverPicture )}}" alt="Profile picture" class="cover-picture" />
         <div class="">
@@ -19,9 +19,7 @@
                 <a href="{{url('list-admins')}}" class="btn btn-secondary">See other Admins</a>
                 <a href="{{url('list-users')}}" class="btn btn-secondary">See other Users</a>
                 <a href="/list-playlists/{{session('adminUserName')}}" class="btn btn-warning">Your playlists</a>
-                @if($isAdmin = 1 )
-                <a href="/create-playlist" class="btn btn-primary">New playlist</a>
-                @endif
+                {{-- <a href="/create-playlist" class="btn btn-primary">New playlist</a> --}}
             </div>
             <div>
                 <div><h3 class="profile-name">Hello <span>{{ucfirst($userName)}}</span></h3>

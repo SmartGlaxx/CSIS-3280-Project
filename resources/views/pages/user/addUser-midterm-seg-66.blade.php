@@ -6,7 +6,6 @@
 @section("content")
         <div class="container">
         <h3>Create User Account</h3>
-        <a href="{{url('list-users')}}" class="btn btn-primary">View All Users</a>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
         @endif
@@ -51,15 +50,41 @@
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <label class="form-label" >Select Admin</label>
-                <select name="adminUserName" class="form-control">
-                    @foreach ($admin as $userAdmin)
-                        <option value="{{$userAdmin->adminUserName}}">
-                        <?php var_dump($userAdmin) ?>    
-                        </option>
-                    @endforeach
-                </select>
+                <div name="adminUserName" class="form-control adminlist" onclick=showAdmins()>
+                    <div>Click to select admin</div>
+                    <div class="adminOptions not-show">
+                        <div class="innerAdminOptions" style="background: red"  onclick=hideAdmins()>
+                        <table>
+                        @foreach ($admin as $userAdmin)
+                         {{-- <input type='hidden' name="radioValue" value="{{$userAdmin->adminUserName}}" --}}
+                         />
+                            <tr>
+                                <td>{{ucfirst($userAdmin->adminUserName)}}</td>
+                                <td><img src="{{url('images/profilePictures/' .$userAdmin->profilePicture)}}" alt="admin picture"
+                                class="profile-picture-dropdown"/></td>
+                                <td><input value="{{$userAdmin->adminUserName}}" type="radio" 
+                                    name= "adminUserName" <?php echo "checked='checked'" ?>
+                                    /></td>
+                            </tr>
+                        @endforeach 
+                        </table> 
+                        </div>
+                    </div>
+                </div> 
                 <button type="submit" name="registerAdmin" class="btn btn-success"
                 style="margin-top:3rem">Register</button>
             </form>
+            <a href="{{url('/sign-in-user')}}" class="btn btn-primary">Login</a>
         </div>
 @endsection
+
+<script>
+    function showAdmins(){
+        document.querySelector('.adminOptions').classList.toggle('not-show');
+        document.querySelector('.icon1').classList.toggle('not-show');
+    }
+
+    function hideAdmins(){
+        document.querySelector('.adminOptions').classList.add('not-show');
+    }
+</script>

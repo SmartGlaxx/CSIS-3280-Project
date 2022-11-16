@@ -80,9 +80,10 @@ class AdminController extends Controller
 
         if($adminSignIn != null && ($adminSignIn->password == $request->password)){
             $userData = $request->input();
-            $request->session()->put('adminUserName', $userData['adminUserName']);
-            $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
-            $request->session()->put('adminCoverPicture', $adminSignIn['coverPicture']);
+            $request->session()->put('userName', $userData['adminUserName']);
+            $request->session()->put('profilePicture', $adminSignIn['profilePicture']);
+            $request->session()->put('coverPicture', $adminSignIn['coverPicture']);
+            $request->session()->put('isAdmin', $adminSignIn['isAdmin']);
             return redirect("/admin-profile/{$admin->adminUserName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");
