@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Playlist;
+use App\Models\User;
 
 class PlaylistController extends Controller
 {
@@ -53,8 +54,22 @@ class PlaylistController extends Controller
             return view("pages/user/signInUser-miderm-seg-66");
         }else{
             $playlist = Playlist::where('adminUserName', $adminUserName)->get();
+            
             return view('/pages/playlist/list-playlist-midterm-seg-66')
             ->with('playlists', json_decode($playlist, true));  
+
+        }
+    }
+
+    public function listUserPlaylistPage($userUserName, $adminUserName){
+        $userUserName = User::where('userName','=',$userUserName)->first();
+        if($this->auth() == false){
+            return view("pages/user/signInUser-miderm-seg-66");
+        }else{
+            $playlist = Playlist::where('adminUserName', $adminUserName)->get();
+            
+            return view('/pages/playlist/list-playlist-midterm-seg-66')
+            ->with(['playlists' => json_decode($playlist, true), 'user' => $userUserName]);  
 
         }
     }

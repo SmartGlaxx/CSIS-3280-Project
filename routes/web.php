@@ -47,8 +47,12 @@ Route::get("/user-profile/{id}",[UserController::class, "userProfile"]);
 Route::get("/view-playlists/{id}",[UserController::class, "usersPlayLists"]);
 //Sign out user
 Route::get("/sign-out-user",[UserController::class, "signOut"]);
-
-
+//Show User update page
+Route::get("/update-user-profile/{userUserName}",[UserController::class, "updateProfile"]);
+//User update function
+Route::post("/update-user-profile/{id}",[UserController::class, "updateProfileFunction"]);
+//Delete User profile
+Route::get("/delete-user-profile/{id}", [UserController::class, "deleteProfileFunction"]);
 
 
 
@@ -62,6 +66,8 @@ Route::get("/list-movies/{id}/{themeColor}/{admin}",[MovieController::class, "ge
 
 //get all admin playlist page
 Route::get("/list-playlists/{admin}", [PlaylistController::class, "listAdminPlaylistPage"]);
+//get all admin playlist page by a user
+Route::get("/list-playlists/{userName}/{admin}", [PlaylistController::class, "listUserPlaylistPage"]);
 //create playlist page
 Route::get("/create-playlist", [PlaylistController::class, "createPlaylistPage"]);
 //create playlist function

@@ -62,11 +62,9 @@
                 <div name="adminUserName" class="form-control adminlist" onclick=showAdmins()>
                     <div>Click to select admin</div>
                     <div class="adminOptions not-show">
-                        <div class="innerAdminOptions" style="background: red"  onclick=hideAdmins()>
+                        <div class="innerAdminOptions"  onclick=hideAdmins()>
                         <table>
                         @foreach ($admin as $userAdmin)
-                         {{-- <input type='hidden' name="radioValue" value="{{$userAdmin->adminUserName}}" --}}
-                         />
                             <tr>
                                 <td>{{ucfirst($userAdmin->adminUserName)}}</td>
                                 <td><img src="{{url('images/profilePictures/' .$userAdmin->profilePicture)}}" alt="admin picture"

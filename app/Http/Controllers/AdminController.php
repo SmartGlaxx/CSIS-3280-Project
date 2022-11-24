@@ -23,6 +23,7 @@ class AdminController extends Controller
     
     }
 
+
     public function adminProfile(){
         if($this->auth() == false){
             return view("pages/admin/loginAdmin-midterm-seg-66");
@@ -54,6 +55,7 @@ class AdminController extends Controller
             'email' => 'required | unique:admins',
             'password' => 'required',
             'comfirmPassword' => 'required',
+            'phone' => 'required'
         ]);
         $admin = new Admin();
         if($request->comfirmPassword == $request->password){
@@ -177,7 +179,9 @@ class AdminController extends Controller
     }
 
     function deleteProfileFunction($adminUserName){
-        
+        if(session()->has("adminUserName")){
+            session()->pull("adminUserName");
+        }
         $admin =  Admin::where('adminUserName','=',$adminUserName)->delete();
 
         return redirect("/add-admin")->with("success","Profile deleted. Create a new acount below");

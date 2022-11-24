@@ -19,7 +19,7 @@
  ?>
     <div class="container subPage">
         <div class="playlist-header">
-        <h3>{{$userName}}'s Playlists</h3>
+        <h3>{{ucfirst($userName)}}'s Playlists</h3>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}
                 <a href="/list-playlists/{{session('adminUserName')}}" class="btn btn-success add-playlist-btn">Add movies to playlist now</a>
@@ -29,7 +29,7 @@
         <?php 
         if($isAdmin == true){
             echo count($playlists) > 0 ? 
-            '<h5>Select a playlist to add movies to</h5>'
+            '<h5>Your playlists</h5>'
             : 
             '<h5>No Playlist yet. First crate a playlist <a href="/create-playlist">here</a></h5>';
         }
@@ -52,7 +52,7 @@
                     <a href="/show-playlist-movies/{{$playlistId}}/{{$playlistColor}}/{{$isAdmin == true ? $userName : $userAdminsUserName}}"class="btn btn-primary">See movies in this playlist</a>
                     <?php  
                     echo $isAdmin == true ?  '<td>
-                        <a href="/edit-playlist/'.  $playlistId .'" class="btn btn-warning">Edit Playlist</a>
+                        <a href="/update-playlist/'.  $playlistId .'" class="btn btn-warning">Edit Playlist</a>
                     </td>' : null
                     ?>
                     <?php  
@@ -82,7 +82,6 @@
                             $movieReleaseYear = $movie["releaseYear"];
                             $movieSynopsis = $movie["synopsis"];
                             $movieImage = $movie["backgroundImage"]["url"];
-                            echo $movieTitle;
                         ?>
                         <table>
                             <tr>
@@ -96,10 +95,13 @@
                         @endif
                     @endforeach
                 @endforeach
-            @if($count == 0)
+            @if($count == 0 && $isAdmin == true)
                 <div class='no-movies'>No movies in this playlist <br/>
                     <a href="/list-movies/{id}/{themeColor}/{adminUserName}" class="btn btn-success">Add movie</a></div>
             @endif
+                @if($isAdmin == false)
+                    <div class='no-movies'>No movies in this playlist.</br> Your admin is yet to add movies to the playlist. </div>
+                @endif
             @endif
         </div>
     </div>

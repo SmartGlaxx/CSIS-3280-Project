@@ -1,4 +1,8 @@
 @extends('partials/pageHeader')
+@if(!session("userUserName"))
+    <div>Account not found</div>
+@endif
+
 {{-- @extends('layouts/layout')
 @section("header")
     Smart Egbuchulem - 300333966

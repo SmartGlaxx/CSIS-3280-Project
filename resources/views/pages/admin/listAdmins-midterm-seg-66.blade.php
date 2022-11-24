@@ -6,21 +6,32 @@
 @section("innerContent")
     <div class="container subPage">
         <h3>All Admins</h3>
-        <table>
+        <table style="list-table">
         <thead>
             <tr>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Username</td>
-                <td>Phone</td>
+                <th></th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
             </tr>
         <thead>
         @foreach ($data as $admin)
             <tr>
-                <td>{{$admin->firstName}}</td>    
-                <td>{{$admin->lastName}}</td>    
+                <td>
+                <?php
+                    if($admin->profilePicture != null){?>
+                    <img src="{{url('images/profilePictures/'. $admin->profilePicture )}}" alt="Profile picture" class="thumbnail-picture"/>
+                <?php }else{ ?>
+                    <img src="{{url('images/placeholders/profile_placeholder.jpg')}}" alt="Profile picture" class="thumbnail-picture"/>
+                <?php } ?>
+                </td>      
                 <td>{{$admin->adminUserName}}</td>    
-                <td>{{$admin->phone}}</td>    
+                <td>{{$admin->firstName}}</td> 
+                <td>{{$admin->lastName}}</td>    
+                <td>{{$admin->email}}</td>    
+                <td>{{$admin->phone}}</td>  
             </tr>
         @endforeach
         </table>
