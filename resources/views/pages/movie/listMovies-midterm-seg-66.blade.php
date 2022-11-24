@@ -8,8 +8,11 @@
     <div class="container movies-header" style="margin: 10rem auto 0">
         <h3>All Movies</h3>
         <div>
-            @if(Session::has('success'))
-                {{Session::get('success')}}
+            @if(Session::has("success"))
+            <div class="alert alert-success">{{Session::get("success")}}</div>
+            @endif
+            @if(Session::has("failed"))
+                <div class="alert alert-danger">{{Session::get("failed")}}</div>
             @endif
         </div>
         <h6>You are adding to <span>{{session('currentPlaylistData')["playlistName"]}}</span> playlist</h6>

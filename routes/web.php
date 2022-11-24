@@ -19,6 +19,14 @@ Route::get("/sign-in-admin",[AdminController::class, "signInAdminPage"]);
 Route::post("/sign-in-admin",[AdminController::class, "signInAdmin"]);
 //show admin profile
 Route::get("/admin-profile/{id}",[AdminController::class, "adminProfile"]);
+//Sign out admin
+Route::get("/sign-out-admin",[AdminController::class, "signOut"]);
+//Show Admin update page
+Route::get("/update-admin-profile/{adminUserName}",[AdminController::class, "updateProfile"]);
+//Admin update function
+Route::post("/update-admin-profile/{id}",[AdminController::class, "updateProfileFunction"]);
+//Delete Admin profile
+Route::get("/delete-admin-profile/{id}", [AdminController::class, "deleteProfileFunction"]);
 
 
 
@@ -35,7 +43,10 @@ Route::post('/sign-in-user', [UserController::class, "signInUserFunction"]);
 Route::get("/list-users", [UserController::class, "listUsers"]);
 //show user profile
 Route::get("/user-profile/{id}",[UserController::class, "userProfile"]);
-
+//show admin playlists
+Route::get("/view-playlists/{id}",[UserController::class, "usersPlayLists"]);
+//Sign out user
+Route::get("/sign-out-user",[UserController::class, "signOut"]);
 
 
 
@@ -59,4 +70,9 @@ Route::post("/create-playlist", [PlaylistController::class, "createPlaylist"]);
 Route::get("/add-to-playlist/{id}/{playlistId}/{themeColor}/{adminUserName}", [PlaylistController::class, "addMovieToPlaylist"]);
 //show movies in a playlist function
 Route::get("/show-playlist-movies/{playlistId}/{playlistColor}/{adminUserName}", [PlaylistController::class, "showMoviesInPlayList"]);
-
+//show update playlist page
+Route::get("/update-playlist/{id}", [PlaylistController::class, "updatePlayList"]);
+//show update playlist function
+Route::post("/update-playlist/{id}", [PlaylistController::class, "updatePlayListFunction"]);
+//delete playlist function
+Route::get("/delete-playlist/{id}", [PlaylistController::class, "deletePlayList"]);

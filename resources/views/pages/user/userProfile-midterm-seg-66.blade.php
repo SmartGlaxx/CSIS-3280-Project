@@ -1,14 +1,15 @@
-@extends('layouts/layout')
+@extends('partials/pageHeader')
+{{-- @extends('layouts/layout')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
 @section("content")
 <?php 
-    $userName = session('userName');
-    $profilePicture = session('profilePicture');
-    $coverPicture = session('coverPicture');
-    $isAdmin = session('isAdmin');
+    // $userName = session('userUserName');
+    // $profilePicture = session('userProfilePicture');
+    // $coverPicture = session('userCoverPicture');
+    // $isAdmin = session('isAdmin');
 ?>  
 <div class="admin-page-top">
 <img src="{{url('images/coverPictures/'. $coverPicture )}}" alt="Profile picture" class="cover-picture" />
@@ -20,14 +21,14 @@
                 <a href="{{url('list-users')}}" class="btn btn-secondary">See other Users</a>
                 <a href="/list-playlists/{{session('adminUserName')}}" class="btn btn-warning">Your playlists</a>
                 {{-- <a href="/create-playlist" class="btn btn-primary">New playlist</a> --}}
-            </div>
+            {{-- </div>
             <div>
                 <div><h3 class="profile-name">Hello <span>{{ucfirst($userName)}}</span></h3>
                 <img src="{{url('images/profilePictures/'. $profilePicture )}}" alt="Profile picture" class="profile-picture"/>
             </div>
         </div>
         </div>
-        </div>
-    </div>
-@endsection
-@yield("innerContent")
+        </div> --}}
+    {{-- </div>
+@endsection --}}
+{{-- @yield("innerContent")  --}}

@@ -5,25 +5,59 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Playlist;
+
 
 class UserController extends Controller
 {
+    public function auth(){
+        $isAdmin = session('isAdmin'); 
+        if($isAdmin == true){
+            $userName = session('adminUserName');
+        }else{
+            $userName = session('userUserName');
+        }
+        if($userName == null){
+            return false;
+        }else{
+            return true;
+        }
+    
+    }
     public function userProfile(){
-        return view("pages/user/userProfile-midterm-seg-66");
+        if($this->auth() == false){
+            return view("pages/admin/loginAdmin-midterm-seg-66");
+        }else{
+            return view("pages/user/userProfile-midterm-seg-66");
+        }
     }
 
     public function addUserPage(){
-        $admin = Admin::get();
-        return view("pages/user/addUser-midterm-seg-66", compact('admin'));
+        if($this->auth() == false){
+            return view("pages/admin/loginAdmin-midterm-seg-66");
+        }else{
+            $admin = Admin::get();
+            return view("pages/user/addUser-midterm-seg-66", compact('admin'));
+        }
     }
 
     public function addUser(Request $request){
 
+        if(request()->profilePicture){
+            $profile_picture = time(). "." . request()->profilePicture->getClientOriginalExtension(); 
+            request()->profilePicture->move(public_path("images/profilePictures"), $profile_picture);
+        }
+        if(request()->coverPicture){
+            $cover_picture = time(). "." . request()->coverPicture->getClientOriginalExtension(); 
+            request()->coverPicture->move(public_path("images/coverPictures"), $cover_picture);
+        }
+
+
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'userName' => 'required',
-            'email' => 'required',
+            'userName' => 'required | unique:users',
+            'email' => 'required | unique:users',
             'password' => 'required',
             'comfirmPassword' => 'required',
             'adminUserName' => 'required',
@@ -36,9 +70,16 @@ class UserController extends Controller
             $user->userName = $request->userName;
             $user->email = $request->email;
             $user->password = $request->password;
+            if(!empty($profile_picture)){
+                $user->profilePicture = $profile_picture;
+            }    
+            if(!empty($cover_picture)){
+                $user->coverPicture = $cover_picture;
+            }
             $user->phone = $request->phone;
             $user->adminUserName = $request->adminUserName;
-            
+            $user->isAdmin = false;
+
             $user->save();
 
             return redirect()->back()->with("success","User account created successfully");
@@ -69,9 +110,10 @@ class UserController extends Controller
 
         if($userSignIn != null && ($userSignIn->password == $request->password)){
             $userData = $request->input();
-            $request->session()->put('userName', $userData['userUserName']);
-            // $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
-            // $request->session()->put('adminCoverPicture', $adminSignIn['coverPicture']);
+            $request->session()->put('userUserName', $userData['userUserName']);
+            $request->session()->put('userAdminsUserName', $userSignIn['adminUserName']);
+            $request->session()->put('userProfilePicture', $userSignIn['profilePicture']);
+            $request->session()->put('userCoverPicture', $userSignIn['coverPicture']);
             $request->session()->put('isAdmin', 0);
             return redirect("/user-profile/{$user->userName}");
         }else{
@@ -81,7 +123,18 @@ class UserController extends Controller
     }
 
     public function listUsers(){
-        $data = User::get();
-        return view("pages/user/listUser-midterm-seg-66", compact('data'));
+        if($this->auth() == false){
+            return view("pages/admin/loginAdmin-midterm-seg-66");
+        }else{
+            $data = User::get();
+            return view("pages/user/listUser-midterm-seg-66", compact('data'));
+        }
+    }
+
+    function signOut(){
+        if(session()->has("userUserName")){
+            session()->pull("userUserName");
+        }
+        return redirect("/sign-in-user");
     }
 }

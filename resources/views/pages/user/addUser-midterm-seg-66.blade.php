@@ -12,7 +12,7 @@
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-            <form method="post" action="{{url('add-user')}}" class="form-control col-sm-12 col-md-6">
+            <form method="post" action="{{url('add-user')}}" enctype="multipart/form-data" class="form-control col-sm-12 col-md-6">
                 @csrf
                 <label class="form-label" >First Name</label>
                 <input type="text" name="firstName" value="{{old('firstName')}}" class="form-control"/>
@@ -44,6 +44,15 @@
                 @error("comfirmPassword")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
+
+                <label class="form-label" >Profile Picture</label>
+                <input type="file" name="profilePicture" value="{{old('profilePicture')}}" 
+                class="form-control"/>
+
+                <label class="form-label" >Cover Picture</label>
+                <input type="file" name="coverPicture" value="{{old('coverPicture')}}" 
+                class="form-control"/>
+
                 <label class="form-label" >Phone</label>
                 <input type="text" name="phone" value="{{old('phone')}}" class="form-control"/>
                 @error("phone")

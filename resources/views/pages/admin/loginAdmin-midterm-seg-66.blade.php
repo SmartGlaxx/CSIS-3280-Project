@@ -6,7 +6,6 @@
 @section("content")
         <div class="container">
         <h3>Admin Sign-in</h3>
-        <a href="{{url('list-admins')}}" class="btn btn-primary">View All Admins</a>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
         @endif

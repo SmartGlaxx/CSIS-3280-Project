@@ -61,6 +61,13 @@ body{
     height: 10rem;
     object-fit: cover;
 }
+.thumbnail-2{
+    width:4rem;
+    height: 4rem;
+    border-radius: 40%;
+    margin: 0.5rem 0;
+    object-fit: cover;
+}
 
 .no-movies{
     margin: 2rem;
@@ -141,6 +148,7 @@ body{
 }
 
 
+
 /* user */
 .not-show{
     display: none;
@@ -164,3 +172,5 @@ body{
     height: 10rem;
     overflow: auto;
 }
+
+/* Admin */

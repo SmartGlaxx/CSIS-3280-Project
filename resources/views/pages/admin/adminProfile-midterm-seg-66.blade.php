@@ -1,14 +1,23 @@
-@extends('layouts/layout')
+@extends('partials/pageHeader')
+
+{{-- @extends('layouts/layout')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
 @section("content")
-<?php 
-    $userName = session('userName');
-    $profilePicture = session('profilePicture');
-    $coverPicture = session('coverPicture');
-    $isAdmin = session('isAdmin');
+<?php
+    // $isAdmin = session('isAdmin'); 
+    // if($isAdmin == true){
+    //     $profilePicture = session('adminProfilePicture');
+    //     $coverPicture = session('adminCoverPicture');
+    //     $userName = session('adminUserName');
+    // }else{
+    //     $profilePicture = session('userProfilePicture');
+    //     $coverPicture = session('userCoverPicture');
+    //     $userName = session('userUserName');
+    // }
+    
 ?>
 <div class="admin-page-top">
 <img src="{{url('images/coverPictures/'. $coverPicture )}}" alt="Profile picture" class="cover-picture" />
@@ -18,8 +27,8 @@
             <div>
                 <a href="{{url('list-admins')}}" class="btn btn-secondary">See other Admins</a>
                 <a href="{{url('list-users')}}" class="btn btn-secondary">See other Users</a>
-                <a href="/list-playlists/{{session('adminUserName')}}" class="btn btn-warning">Your playlists</a>
-                @if($isAdmin = 1 )
+                <a href="/list-playlists/{{$userName}}" class="btn btn-warning">Your playlists</a>
+                @if($isAdmin == true )
                 <a href="/create-playlist" class="btn btn-primary">New playlist</a>
                 @endif
             </div>
@@ -32,4 +41,4 @@
         </div>
     </div>
 @endsection
-@yield("innerContent")
+@yield("innerContent") --}}

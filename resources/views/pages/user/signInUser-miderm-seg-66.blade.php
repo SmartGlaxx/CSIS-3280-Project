@@ -6,7 +6,7 @@
 @section("content")
         <div class="container">
         <h3>User Sign-in</h3>
-        <a href="{{url('list-admins')}}" class="btn btn-primary">View All Users</a>
+        
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
         @endif
@@ -26,7 +26,7 @@
                 @error("password")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                <input type="hidden" value="true" name="isAdmin"/>
+                <input type="hidden" value="false" name="isAdmin"/>
                 <button type="submit" name="registerAdmin" class="btn btn-success">Sign In</button>
             </form>
         </div>

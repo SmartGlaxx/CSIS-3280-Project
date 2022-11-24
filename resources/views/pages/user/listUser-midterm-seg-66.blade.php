@@ -1,10 +1,10 @@
-@extends("layouts/layout")
+@extends("pages/user/userProfile-midterm-seg-66")
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
-@section("content")
-    <div class="container">
+@section("innerContent")
+    <div class="container subPage">
         <h3>All Users</h3>
         <table>
         <thead>
