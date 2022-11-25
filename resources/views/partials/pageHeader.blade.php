@@ -35,7 +35,7 @@
 <div class="admin-page-top">
 <img src="{{url('images/coverPictures/'. $coverPicture)}}" alt="cover picture" class="cover-picture" />
         <div class="">
-        <div class="profile-header">
+            <div class="profile-header">
             <h2 class="title">Movies Club</h2>
             <div>
                 <a href="{{url('list-admins')}}" class="btn btn-secondary">See other Admins</a>
@@ -51,31 +51,39 @@
                 <a href="/list-playlists/{{$userName}}/{{$userAdminsUserName}}" class="btn btn-warning">Your playlists</a>
                 @endif
             </div>
-            <div>
-                <div><h3 class="profile-name"><span>{{ucfirst($userName)}}</span></h3>
-                    <?php  
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="profile-name"><span>{{ucfirst($userName)}}</span></span> 
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                   <?php if($profilePicture != null){?>
+                        <img src="{{url('images/profilePictures/'. $profilePicture )}}" alt="Profile picture" class="profile-picture"/>
+                    <?php }else{ ?>
+                        <img src="{{url('images/placeholders/profile_placeholder.jpg')}}" alt="Profile picture" class="profile-picture"/>
+                    <?php }  
                     if($userName != null && $userName == session('adminUserName')){ ?>
-                        <a href="/sign-out-admin" class="btn btn-secondary">Sign-out</a>
-                        <a href="{{url('/update-admin-profile/' . $userName)}}" class="btn btn-warning">Update Profile</a>     
-                       <a href="{{url('/delete-admin-profile/' . $userName)}}" class="btn btn-danger">Delete Profile</a>
+                        <a href="/sign-out-admin" class="btn btn-secondary dropdown-item">Sign-out</a>
+                        <a href="{{url('/update-admin-profile/' . $userName)}}" class="btn btn-warning dropdown-item">Update Profile</a>     
+                       <a href="{{url('/delete-admin-profile/' . $userName)}}" class="btn btn-danger dropdown-item">Delete Profile</a>
                       
                     <?php }else if($userName != null && session("userUserName") == $userName){ ?>
-                        <a href="/sign-out-user" >Sign-out</a>
-                        <a href="{{url('/update-user-profile/'. $userName)}}" class="btn btn-warning">Update Profile</a>     
-                        <a href="{{url('/delete-user-profile/' . $userName)}}" class="btn btn-danger">Delete Profile</a>
+                        <a href="/sign-out-user" class="btn btn-secondary dropdown-item">Sign-out</a>
+                        <a href="{{url('/update-user-profile/'. $userName)}}" class="btn btn-warning dropdown-item">Update Profile</a>     
+                        <a href="{{url('/delete-user-profile/' . $userName)}}" class="btn btn-danger dropdown-item">Delete Profile</a>
                     <?php }else if($userName != null && session("userUserName") != $userName){ 
                             echo $userName;
                             echo session("userUserName");
                     }else if($userName == null ){
-                            echo '<a href="/sign-in-user" >Sign in</a>';
-                    } 
-                    if($profilePicture != null){?>
-                        <img src="{{url('images/profilePictures/'. $profilePicture )}}" alt="Profile picture" class="profile-picture"/>
-                    <?php }else{ ?>
-                        <img src="{{url('images/placeholders/profile_placeholder.jpg')}}" alt="Profile picture" class="profile-picture"/>
-                    <?php } ?>
+                            echo '<a href="/sign-in-user dropdown-item" >Sign in</a>';
+                    }?> 
+                </div>
             </div>
             
+            <div >
+                {{-- <div class="header-section-2">
+                    <h3 class="profile-name"><span>{{ucfirst($userName)}}</span></h3>
+            </div> --}}
         </div>
         </div>
         </div>

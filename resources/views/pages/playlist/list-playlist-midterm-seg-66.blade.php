@@ -85,7 +85,7 @@
                         ?>
                         <table>
                             <tr>
-                                <td><img src="{{$movieImage}}" class="thumbnail" alt="pic" /></td>
+                                <td><img src="{{$movieImage}}" class="thumbnail" alt="pic"/></td>
                                 <td>{{$movieTitle}}</td>
                                 <td>{{$movieReleaseYear}}</td>
                                 <td>{{$movieSynopsis}}</td>

@@ -57,8 +57,8 @@ body{
 }
 
 .thumbnail{
-    width:10rem;
-    height: 10rem;
+    width:5rem;
+    height: 5rem;
     object-fit: cover;
 }
 .thumbnail-2{
@@ -89,10 +89,14 @@ body{
     background-color: rgba(20,20,25, 0.9);
 }
 .profile-header div{
-    display: flex;
-    align-items: center;
+    /* display: block; */
+    align-items: center; 
 }
 
+.header-section-2{
+    display: flex;
+    align-items: center; 
+}
 .movies-header{
     position: relative;
     width: 100%;
@@ -125,9 +129,11 @@ body{
 }
 
 .profile-picture{
-    border-radius: 50%;
-    width:5rem;
-    height: 5rem;
+    border-radius: 1rem;
+    width:3rem;
+    height: 3rem;
+    margin: 0.7rem;
+    border: 0.3rem solid #444;
     object-fit: cover;
     float: right
 }
@@ -193,6 +199,7 @@ table{
 }
 th, td {
     background-color: #2e3636;
+    background-color: #181b31;
     color: #ddd;
     padding: 0.6rem;
 }

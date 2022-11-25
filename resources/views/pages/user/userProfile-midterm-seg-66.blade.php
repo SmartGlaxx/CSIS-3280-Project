@@ -1,14 +1,18 @@
 @extends('partials/pageHeader')
 @if(!session("userUserName"))
     <div>Account not found</div>
-@endif
+    @endif
+    {{-- @section("content")
+
+
+
+    @endsection --}}
 
 {{-- @extends('layouts/layout')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
-@section("content")
 <?php 
     // $userName = session('userUserName');
     // $profilePicture = session('userProfilePicture');
