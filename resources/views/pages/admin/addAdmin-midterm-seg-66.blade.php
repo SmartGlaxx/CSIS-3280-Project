@@ -5,63 +5,67 @@
 
 @section("content")
         <div class="container">
-        <h3>Admin Sign-up</h3>
-        <a href="{{url('sign-in-admin')}}" class="btn btn-primary">Admin Sign-in</a>
+        <h3 class="title">MOVIES CLUB <span class="title-inner">Admin Sign-up</span></h3>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
         @endif
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-        
-            <form method="post" action="{{url('add-admin')}}" enctype="multipart/form-data" class="form-control">
-                @csrf
-                <label class="form-label" >First Name</label>
-                <input type="text" name="firstName" value="{{old('firstName')}}" class="form-control"/>
+        <form method="post" action="{{url('add-admin')}}" enctype="multipart/form-data" class="sign-up-form">
+            @csrf
+            <table class="sign-up-table">
+                <tr><td><label class="form-label" >First Name</label></td>
+                <td><input type="text" name="firstName" value="{{old('firstName')}}" class="form-control"/></td></tr>
                 @error("firstName")
                 <div class="alert alert-danger">{{$message}}</div> 
                 @enderror
-                <label class="form-label" >Last Name</label>
-                <input type="text" name="lastName" value="{{old('lastName')}}" class="form-control"/>
+                <tr><td><label class="form-label" >Last Name</label></td>
+                <td><input type="text" name="lastName" value="{{old('lastName')}}" class="form-control"/></td></tr>
                 @error("lastName")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                <label class="form-label" >User Name</label>
-                <input type="text" name="adminUserName" value="{{old('adminUserName')}}" class="form-control"/>
+                <tr><td><label class="form-label" >User Name</label></td>
+                <td><input type="text" name="adminUserName" value="{{old('adminUserName')}}" class="form-control"/></td></tr>
                 @error("adminUserName")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                <label class="form-label" >Email</label>
-                <input type="email" name="email" value="{{old('email')}}" class="form-control"/>
+                <tr><td><label class="form-label" >Email</label></td>
+                <td><input type="email" name="email" value="{{old('email')}}" class="form-control"/></td></tr>
                 @error("email")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                <label class="form-label" >Password</label>
-                <input type="password" name="password"  class="form-control"/>
+                <tr><td><label class="form-label" >Password</label></td>
+                <td><input type="password" name="password"  class="form-control"/></td></tr>
                 @error("password")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-                <label class="form-label" >Comfirm Password</label>
-                <input type="password" name="comfirmPassword"  class="form-control"/>
+                <tr><td><label class="form-label" >Comfirm Password</label></td>
+                <td><input type="password" name="comfirmPassword"  class="form-control"/></td></tr>
                 @error("comfirmPassword")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 
-                <label class="form-label" >Profile Picture</label>
-                <input type="file" name="profilePicture" value="{{old('profilePicture')}}" 
-                class="form-control"/>
+                <tr><td><label class="form-label" >Profile Picture</label></td>
+                <td><input type="file" name="profilePicture" value="{{old('profilePicture')}}" 
+                class="form-control"/></td></tr>
 
-                <label class="form-label" >Cover Picture</label>
-                <input type="file" name="coverPicture" value="{{old('coverPicture')}}" 
-                class="form-control"/>
+                <tr><td><label class="form-label" >Cover Picture</label></td>
+                <td><input type="file" name="coverPicture" value="{{old('coverPicture')}}" 
+                class="form-control"/></td></tr>
 
-                <label class="form-label" >Phone</label>
-                <input type="text" name="phone" value="{{old('phone')}}" class="form-control"/>
+                <tr><td><label class="form-label" >Phone</label></td>
+                <td><input type="text" name="phone" value="{{old('phone')}}" class="form-control"/></td></tr>
                 @error("phone")
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <input type="hidden" value="true" name="isAdmin"/>
-                <button type="submit" name="registerAdmin" class="btn btn-success">Register</button>
+                <tr>
+                    <td>Already registered? <a href="{{url('sign-in-admin')}}" class="btn btn-default">Sign-in</a></td>
+                    <td><button type="submit" name="registerAdmin" class="btn btn-default auth-btn">Register</button></td></tr>
+                <table>
+                    {{-- <img src="{{url('images/bg_images/cinema.jpg' )}}" alt="Profile picture" class="bg-picture"/> --}}
             </form>
+            
         </div>
 @endsection

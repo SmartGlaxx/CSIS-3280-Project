@@ -129,9 +129,9 @@ body{
 }
 
 .profile-picture{
-    border-radius: 1rem;
-    width:3rem;
-    height: 3rem;
+    border-radius: 1.5rem;
+    width:4rem;
+    height: 4rem;
     margin: 0.7rem;
     border: 0.3rem solid #444;
     object-fit: cover;
@@ -144,6 +144,10 @@ body{
     width: 100vw;
     object-fit: cover;
     
+}
+
+.profile-box{
+    display: flex
 }
 
 /* subPage */
@@ -160,7 +164,11 @@ body{
     width: 100%
 }
 
-
+.bg-picture{
+    /* height: 100%; */
+    width: 100%;
+    object-fit: cover;
+}
 
 /* user */
 .not-show{
@@ -202,4 +210,122 @@ th, td {
     background-color: #181b31;
     color: #ddd;
     padding: 0.6rem;
+}
+
+
+/* authentication */
+
+.sign-up-form{
+    margin-top: 1rem;
+    height: calc(100vh - 5rem);
+    z-index: 0;
+    overflow: hidden;
+}
+.sign-in-form{
+    z-index: 0;
+    overflow: hidden;
+}
+.sign-up-table{
+    position: absolute;
+    z-index: 2;
+}
+.sign-in-table{
+    position: absolute;
+    z-index: 2;
+    width: 50%;
+    margin-top: 10rem;
+}
+.sign-in-table{
+    /* margin-top: 30%; */
+}
+.form-bg-container{
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    right: 0;
+    height: 5rem;
+}
+
+.form-bg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    margin:-60px 0 0 -60px;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    background: red;
+    height: 100%;
+    border-bottom: 0.5rem solid gray;
+    width: 60%;
+    /* animation: myAnimation 5s linear 2s infinite alternate; */
+}
+
+/* @keyframes myAnimation {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  } */
+
+@-moz-keyframes spin { 
+    0% {
+        transform: rotate(0);
+        transform: skew(20deg)
+      }
+      100% {
+        transform: rotate(360deg);
+        transform: skew(-20deg)
+      }
+}
+@-webkit-keyframes spin { 
+    0% {
+        transform: rotate(0);
+        transform: skew(20deg)
+      }
+      100% {
+        transform: rotate(360deg);
+        transform: skew(-20deg)
+      }
+}
+@keyframes spin { 
+    0% {
+        transform: rotate(0);
+        transform: skew(180deg)
+      }
+      100% {
+        transform: rotate(360deg);
+        transform: skew(-160deg)
+      }
+}
+
+.btn-default{
+    color:#aaa
+}
+.btn-default:hover{
+    color:#fff
+}
+
+.title-inner{
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #ddd;
+
+}
+
+
+
+/* Buttons */
+.auth-btn{
+    float:right   
+}
+.update-btn:hover{
+    color: rgb(176, 106, 0)
+}
+
+.delete-btn:hover{
+    color: rgb(135, 15, 15)
 }

@@ -49,15 +49,15 @@
                     <a href="{{url('/list-movies/' . $playlistId . "/". $playlistColor . "/". $userName)}}" class="btn btn-success">Add movie</a> 
                     @endif
                    
-                    <a href="/show-playlist-movies/{{$playlistId}}/{{$playlistColor}}/{{$isAdmin == true ? $userName : $userAdminsUserName}}"class="btn btn-primary">See movies in this playlist</a>
+                    <a href="/show-playlist-movies/{{$playlistId}}/{{$playlistColor}}/{{$isAdmin == true ? $userName : $userAdminsUserName}}"class="btn btn-default">See movies in this playlist</a>
                     <?php  
                     echo $isAdmin == true ?  '<td>
-                        <a href="/update-playlist/'.  $playlistId .'" class="btn btn-warning">Edit Playlist</a>
+                        <a href="/update-playlist/'.  $playlistId .'" class="btn btn-default update-btn">Edit Playlist</a>
                     </td>' : null
                     ?>
                     <?php  
                     echo $isAdmin == true ?  '<td>
-                        <a href="/delete-playlist/'.  $playlistId .'" class="btn btn-danger">Delete Playlist</a>
+                        <a href="/delete-playlist/'.  $playlistId .'" class="btn btn-default delete-btn">Delete Playlist</a>
                     </td>' : null
                     ?>
                     </td> 
@@ -74,6 +74,7 @@
             @endif
             <?php $count = 0; ?>
             @if(Session::has("allMovies"))
+                <table>
                 @foreach($allMovies as $movie)
                     @foreach($movieIds as $movieId)
                         @if($movieId == $movie["id"])
@@ -83,23 +84,22 @@
                             $movieSynopsis = $movie["synopsis"];
                             $movieImage = $movie["backgroundImage"]["url"];
                         ?>
-                        <table>
                             <tr>
                                 <td><img src="{{$movieImage}}" class="thumbnail" alt="pic"/></td>
                                 <td>{{$movieTitle}}</td>
                                 <td>{{$movieReleaseYear}}</td>
                                 <td>{{$movieSynopsis}}</td>
                             </tr>
-                        </table>
-                        <?php $count++; ?>
+                            <?php $count++; ?>
                         @endif
+                        @endforeach
                     @endforeach
-                @endforeach
+                </table>
             @if($count == 0 && $isAdmin == true)
                 <div class='no-movies'>No movies in this playlist <br/>
                     <a href="/list-movies/{id}/{themeColor}/{adminUserName}" class="btn btn-success">Add movie</a></div>
             @endif
-                @if($isAdmin == false)
+                @if($count == 0 && $isAdmin == false)
                     <div class='no-movies'>No movies in this playlist.</br> Your admin is yet to add movies to the playlist. </div>
                 @endif
             @endif
