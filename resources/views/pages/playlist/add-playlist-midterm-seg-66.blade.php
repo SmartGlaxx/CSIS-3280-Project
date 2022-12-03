@@ -30,8 +30,9 @@
                 @enderror
                 <input  name="adminUserName" value="{{session('adminUserName')}}" type="hidden" class="form-control"/>
                 <button type="submit" name="registerAdmin" class="btn btn-success"
-                style="margin-top:3rem">Register</button>
+                style="margin-top:3rem">Create</button>
             </form>
             @endif
         </div>
 @endsection
+@include("partials/footer")

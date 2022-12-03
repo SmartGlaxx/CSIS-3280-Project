@@ -6,6 +6,7 @@
 @section("innerContent")
     <div class="container subPage">
         <h3>All Admins</h3>
+        <div class="table-responsive">
         <table style="list-table">
         <thead>
             <tr>
@@ -16,7 +17,7 @@
                 <th>Email</th>
                 <th>Phone</th>
             </tr>
-        <thead>
+        </thead>
         @foreach ($data as $admin)
             <tr>
                 <td>
@@ -35,5 +36,7 @@
             </tr>
         @endforeach
         </table>
+        </div>
     </div>
 @endsection
+@include("partials/footer")

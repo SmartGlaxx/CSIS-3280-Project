@@ -1,12 +1,14 @@
 body{
     color: rgb(220,220,220);
-    background-color: rgb(10,10,20);
+    background-color: rgb(10,10,35);
 }
-.title{
-    /* width: 100%; */
+
+a{
+    text-decoration: none;
+}
+a .title{
     font-size: 1.5rem;
-    padding: 1rem;
-    background: linear-gradient(to top right, rgb(20,20,25), rgb(50,50,60));
+    color: #aaa
 }
 .main-container{
     /* margin: 0.5rem; */
@@ -31,6 +33,10 @@ body{
 .movie-img{
     width: 90%;
     margin: 5%
+}
+.review-img{
+    height: 40vh;
+    object-fit: cover;
 }
 .synopsis{
     transform: translateY(100%);
@@ -128,6 +134,15 @@ body{
     object-fit: cover;
 }
 
+.navbar { 
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,0,0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+/*
+CSS to change bootstrap button color.
+Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
+*/
+
+}
+
 .profile-picture{
     border-radius: 1.5rem;
     width:4rem;
@@ -135,7 +150,9 @@ body{
     margin: 0.7rem;
     border: 0.3rem solid #444;
     object-fit: cover;
-    float: right
+    /* right: 4rem;
+    position: absolute;
+    top: 0rem */
 }
 
 .cover-picture{
@@ -143,7 +160,10 @@ body{
     height: 10rem;
     width: 100vw;
     object-fit: cover;
-    
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 4;
 }
 
 .profile-box{
@@ -153,13 +173,14 @@ body{
 /* subPage */
 .subPage{
     margin-top: 13rem;
+    margin-bottom: 13rem;
 }
 
 
 /* admin */
 .admin-page-top{
     position: absolute; 
-    z-index: 100;
+    z-index: 5;
     top: 0; 
     width: 100%
 }
@@ -171,28 +192,28 @@ body{
 }
 
 /* user */
-.not-show{
-    display: none;
+.select-admin{
+    background: #000;
 }
 
-.adminlist{
+/* .adminlist{
     height: 10rem;
     overflow-y: auto ;
-}
+} */
 
 .profile-picture-dropdown{
     width: 2.5rem;
     height: 2.5rem;
     object-fit: cover;
-    border-radius: 25%;
+    border-radius: 15%;
 }
 
-.innerAdminOptions{
+/* .innerAdminOptions{
     background-color: inherit;
     width: 10rem;
     height: 10rem;
     overflow: auto;
-}
+} */
 
 /* tables */
 /* .list-table th, .list-table td {
@@ -202,12 +223,11 @@ body{
 } */
 
 table{
-    border: 1px solid none;
-    border-radius: 10px;
+    /* background: #003; */
 }
 th, td {
-    background-color: #2e3636;
-    background-color: #181b31;
+    /* background-color: #2e3636; */
+    background-color: none;
     color: #ddd;
     padding: 0.6rem;
 }
@@ -215,13 +235,15 @@ th, td {
 
 /* authentication */
 
-.sign-up-form{
+.form{
+    border: none;
+    background: none;
     margin-top: 1rem;
     height: calc(100vh - 5rem);
     z-index: 0;
     overflow: hidden;
 }
-.sign-in-form{
+.form, .review-form{
     z-index: 0;
     overflow: hidden;
 }
@@ -234,6 +256,15 @@ th, td {
     z-index: 2;
     width: 50%;
     margin-top: 10rem;
+}
+.create-review{
+    margin-top: 1rem
+}
+.review-table{
+    position: absolute;
+    z-index: 2;
+    width: 50%;
+    margin-top: 1rem;
 }
 .sign-in-table{
     /* margin-top: 30%; */
@@ -256,7 +287,7 @@ th, td {
     -webkit-animation:spin 4s linear infinite;
     -moz-animation:spin 4s linear infinite;
     animation:spin 4s linear infinite;
-    background: red;
+    /* background: red; */
     height: 100%;
     border-bottom: 0.5rem solid gray;
     width: 60%;
@@ -329,3 +360,118 @@ th, td {
 .delete-btn:hover{
     color: rgb(135, 15, 15)
 }
+
+
+/* footer */
+.footer{
+    height: 5rem;
+    display: flex; 
+    justify-content: space-around;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 1rem;
+    background: #002;
+    z-index: 5;
+    position: fixed; 
+    bottom:0; 
+    width: 100vw
+}
+
+.em{
+    font-size: 1.1rem;
+    color: rgb(95, 95, 228);
+    font-style: italic;
+}
+
+/* landing page */
+
+.landing-page-picture{
+    height: 100vh;
+    position: absolute;
+}
+
+.hero{
+    position: absolute; 
+    top : 20vh; 
+    z-index: 5;
+    padding: 5rem; 
+    margin: 4rem;
+    opacity: 0.9;
+    border-radius: 1rem;
+    /* background: linear-gradient(123deg, rgb(131, 20, 20), blue); */
+}
+
+.hero-title{
+    display: inline-block;
+    font-size: 7rem;
+    font-weight: 600;
+    line-height: 0.9;
+    padding: 20px;
+    text-transform: uppercase;
+    background: radial-gradient(white,#111) no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.overlay{
+    height: 100vh; 
+    width: 100vw; 
+    background: rgba(0,0,30,0.8); 
+    position:absolute
+}
+
+/* page */
+
+.picture{
+    float: left;
+    width: 20rem;
+    margin: 2rem
+}
+
+.page{
+    padding: 5rem; 
+    margin: 4rem;
+    z-index: 5;
+    position: absolute;
+}
+
+.page-top{
+    position: absolute; 
+    z-index: 5;
+    top: 0; 
+    width: 100%
+}
+
+
+.movie-card{
+    background: #003;
+    padding: 2rem;
+    border-radius: 1rem;
+    color: #aab;
+}
+
+
+/* Nav */
+.logo{
+    width: 4rem;
+}
+.navbar{
+    background: linear-gradient(123deg, #200, #003);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+}
+
+.nav-item a{
+    color: #ccc;
+    font-weight: 350;
+}
+.nav-item a:hover{
+    color: #eee;
+}
+
+/* @media screen and (max-width: 991px){
+    .profile-picture{top: 6rem; right: 1rem}
+} */

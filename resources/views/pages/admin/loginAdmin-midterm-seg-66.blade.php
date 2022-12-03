@@ -14,6 +14,7 @@
         @endif        
             <form method="post" action="{{url('sign-in-admin')}}" class="sign-in-form">
                 @csrf
+                <div class="table-responsive">
                 <table class="sign-in-table">
                 <tr><td><label class="form-label" >Email or Username</label></td>
                 <td><input type="text" name="adminUserName" value="{{old('adminUserName')}}" class="form-control"/></td></tr>
@@ -29,7 +30,8 @@
                 <tr>
                     <td>New Admin? <a href="{{url('add-admin')}}" class="btn btn-default">Sign-up</a></td>
                     <td><button type="submit" name="registerAdmin" class="btn btn-default auth-btn">Sign In</button></td></tr>
-                <table>
+                </table>
+                </div>
                     {{-- <img src="{{url('images/bg_images/cinema.jpg' )}}" alt="Profile picture" class="bg-picture"/>              --}}
             </form>
         </div>

@@ -4,7 +4,7 @@
 @endsection
 
 @section("content")
-        <div class="container">
+        <div class="">
         <h3 class="title">MOVIES CLUB <span class="title-inner">User Sign-up</span></h3>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
@@ -12,7 +12,7 @@
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-            <form method="post" action="{{url('add-user')}}" enctype="multipart/form-data" class="sign-up-form">
+            <form method="post" action="{{url('add-user')}}" enctype="multipart/form-data" class="form-control form">
                 @csrf
                 <table class="sign-up-table">
                 <tr><td><label class="form-label" >First Name</label></td>
@@ -61,25 +61,26 @@
                 @enderror
                 <tr><td><label class="form-label" >Select Admin</label></td>
                 <td>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select admin
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <table>
-                            @foreach ($admin as $userAdmin)
-                            <tr>
-                                <td>{{ucfirst($userAdmin->adminUserName)}}</td>
-                                <td><img src="{{url('images/profilePictures/' .$userAdmin->profilePicture)}}" alt="admin picture"
-                                class="profile-picture-dropdown"/></td>
-                                <td><input value="{{$userAdmin->adminUserName}}" type="radio" 
-                                    name= "adminUserName" <?php echo "checked='checked'" ?> />
-                                </td>
-                            </tr>
-                            @endforeach 
-                            </table>
-                        </div>
-                      </div>
+                <div class="dropdown" >
+                    <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="profile-name"><span>Select admin</span></span> 
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <table class="select-admin">
+                        @foreach ($admin as $userAdmin)
+                        <tr>
+                            <td>{{ucfirst($userAdmin->adminUserName)}}</td>
+                            <td><img src="{{url('images/profilePictures/' .$userAdmin->profilePicture)}}" alt="admin picture"
+                            class="profile-picture-dropdown"/></td>
+                            <td><input value="{{$userAdmin->adminUserName}}" type="radio" 
+                                name= "adminUserName" <?php echo "checked='checked'" ?> />
+                            </td>
+                        </tr>
+                        @endforeach 
+                        </table>
+                    </div>
+                </div>
+
                 </td>
                 <tr>
                     <td>Already registered? <a href="{{url('sign-in-user')}}" class="btn btn-default">Sign-in</a></td>
@@ -89,14 +90,3 @@
             </form>
         </div>
 @endsection
-
-<script>
-    function showAdmins(){
-        document.querySelector('.adminOptions').classList.toggle('not-show');
-        document.querySelector('.icon1').classList.toggle('not-show');
-    }
-
-    function hideAdmins(){
-        document.querySelector('.adminOptions').classList.add('not-show');
-    }
-</script>

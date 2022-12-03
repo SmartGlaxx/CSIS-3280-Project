@@ -48,6 +48,7 @@
         @endfor
     </div>
 @endsection
+@include("partials/footer")
 
 
 

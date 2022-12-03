@@ -14,7 +14,8 @@
         @endif
         <form method="post" action="{{url('update-admin-profile/' . $id)}}" class="form-control" enctype="multipart/form-data">
         @csrf
-            <table>
+        <div class="table-responsive">
+            <table class="sign-in-table">
             <tr>
                 <td>First Name</td>
                 <td><input type="text" name= "firstName" value="{{$firstName}}" class="form-control"/>
@@ -62,6 +63,8 @@
                 <td><button type="submit" mame ="updateBtn" class="btn btn-secondary">Update Profile</button></td>
             </tr>
         </table>
+        </div>
         </form>
     </div>
 @endsection
+@include("partials/footer")

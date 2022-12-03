@@ -1,11 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\ReviewController;
 
+//show landing page
+Route::get("/", [PageController::class, "showLandingPage"]);
+//show about page
+Route::get("/about", [PageController::class, "showAboutPage"]);
+//show points page
+Route::get("/points", [PageController::class, "showPointsPage"]);
 
 //show add admin form
 Route::get('/add-admin', [AdminController::class, "addAdminPage"]);
@@ -82,3 +90,21 @@ Route::get("/update-playlist/{id}", [PlaylistController::class, "updatePlayList"
 Route::post("/update-playlist/{id}", [PlaylistController::class, "updatePlayListFunction"]);
 //delete playlist function
 Route::get("/delete-playlist/{id}", [PlaylistController::class, "deletePlayList"]);
+
+
+
+//View movie reviews
+Route::get("/reviews/{id}", [ReviewController::class, "showReviews"]);
+//post a review
+Route::post("/post-review/{id}/{userName}", [ReviewController::class, "postReview"]);
+//show update review page
+Route::get("/edit-review/{id}/{userName}", [ReviewController::class, "editReview"]);
+//update a review
+Route::post("/update-review/{id}/{userName}", [ReviewController::class, "updateReview"]);
+//delete a review
+Route::get("/delete-review/{id}", [ReviewController::class, "deleteReview"]);
+
+
+
+
+

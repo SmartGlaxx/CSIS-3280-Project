@@ -5,7 +5,7 @@
 
 @section("innerContent")
 
-<div class="container subPage" style="width: 80%">
+<div class="container subPage">
     <div class="playlist-header">
     <h3>Edit <em>{{ucfirst($playlistName)}}</em> Playlist</h3>
     </div>
@@ -16,7 +16,7 @@
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-            <form method="post" action="{{url('update-playlist/' . $id)}}" class="form-control">
+            <form method="post" action="{{url('update-playlist/' . $id)}}" class="form-controlform">
                 @csrf
                 <label class="form-label" >Playlist name</label>
                 <input type="text" name="playlistName" value="{{ucfirst($playlistName)}}" class="form-control"/>
@@ -32,16 +32,18 @@
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <label class="form-label" >Movies</label><br/>
-                <table>
+                <div class="table-responsive">
+                <table class="table">
                @foreach ($moviesArray as $movie)
                <tr>
                 <?php $movieImage = $movie["backgroundImage"]["url"]; ?>
                 <td><img src="{{$movieImage}}" class="thumbnail-2" alt="pic" /></td>
                 <td><span>{{$movie["title"]}}</span></td>
-                <td><button type="submit" name="movieId[]" value="{{$movie["id"]}}">Remove</button></td>
+                <td><button type="submit" name="movieId[]" value="{{$movie["id"]}}" class="btn btn-outline-danger">Remove</button></td>
                </tr>
                @endforeach
                 </table>
+                </div>
                 <?php  
                     $idString = "";
                     foreach ($moviesArray as $movie ){
@@ -54,8 +56,10 @@
                     }
                 ?>
                <input type="hidden" name="movieIdAltInput" value="{{$idString}}" />
-                <button type="submit" name="updatePlaylist" >Update Playlist</button>
-                <a href="{{url('/list-movies/'. $id . '/' .$themeColor. '/' .$adminUserName)}}" class="btn btn-success">Add movie</a>
+                <button type="submit" name="updatePlaylist" class="btn btn-outline-warning">Update Playlist</button>
+                <a href="{{url('/list-movies/'. $id . '/' .$themeColor. '/' .$adminUserName)}}" class="btn btn-outline-success">Add movie</a>
             </form>
         </div>
 @endsection
+@include("partials/footer")
+

@@ -12,8 +12,9 @@
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-        <form method="post" action="{{url('add-admin')}}" enctype="multipart/form-data" class="sign-up-form">
+        <form method="post" action="{{url('add-admin')}}" enctype="multipart/form-data" class="form-control form">
             @csrf
+            <div class="table-responsive">
             <table class="sign-up-table">
                 <tr><td><label class="form-label" >First Name</label></td>
                 <td><input type="text" name="firstName" value="{{old('firstName')}}" class="form-control"/></td></tr>
@@ -63,7 +64,8 @@
                 <tr>
                     <td>Already registered? <a href="{{url('sign-in-admin')}}" class="btn btn-default">Sign-in</a></td>
                     <td><button type="submit" name="registerAdmin" class="btn btn-default auth-btn">Register</button></td></tr>
-                <table>
+                </table>
+                </div>
                     {{-- <img src="{{url('images/bg_images/cinema.jpg' )}}" alt="Profile picture" class="bg-picture"/> --}}
             </form>
             
