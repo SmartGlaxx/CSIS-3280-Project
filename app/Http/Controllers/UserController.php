@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Playlist;
@@ -25,22 +26,35 @@ class UserController extends Controller
     
     }
     public function userProfile($userName){
-        // $userData = User::where('userName','=',$userName)->first();
 
         if($this->auth() == false){
-            return view("pages/user/signInUser-miderm-seg-66");
+            return view("pages/user/sign-in-user");
         }else{
-            return view("pages/user/userProfile-midterm-seg-66");
+
+        $movies = Http::withHeaders([
+            'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
+		    'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
+        ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
+        ['query' => "*"]);
+
+      
+        $movieData = json_decode($movies, true)["titles"];
+        for($i = 0; $i < 50; $i++){
+            $allMovies[] = $movieData[$i]["jawSummary"];
+        }
+
+
+            return view("pages/user/user-profile")->with('allMovies', $allMovies);
         }
     }
 
-    public function addUserPage(){
+    public function registerUserPage(){
         $admin = Admin::get();
-        return view("pages/user/addUser-midterm-seg-66", compact('admin'));
+        return view("pages/user/register-user", compact('admin'));
     
     }
 
-    public function addUser(Request $request){
+    public function registerUser(Request $request){
 
         if(request()->profilePicture){
             $profile_picture = time(). "." . request()->profilePicture->getClientOriginalExtension(); 
@@ -89,7 +103,7 @@ class UserController extends Controller
     }
 
     public function signInUserPage(Request $request){
-    return view("pages/user/signInUser-miderm-seg-66");
+    return view("pages/user/sign-in-user");
     }
       
 
@@ -123,10 +137,10 @@ class UserController extends Controller
 
     public function listUsers(){
         if($this->auth() == false){
-            return view("pages/admin/loginAdmin-midterm-seg-66");
+            return view("pages/admin/sign-in-admin");
         }else{
             $data = User::get();
-            return view("pages/user/listUser-midterm-seg-66", compact('data'));
+            return view("pages/user/list-users", compact('data'));
         }
     }
 
@@ -197,7 +211,7 @@ class UserController extends Controller
         }
         $admin =  User::where('userName','=',$userUserName)->delete();
 
-        return redirect("/add-user")->with("success","Profile deleted. Create a new acount below");
+        return redirect("/register-user")->with("success","Profile deleted. Create a new acount below");
     }
 
 

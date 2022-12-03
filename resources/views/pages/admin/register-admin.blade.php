@@ -1,10 +1,12 @@
 @extends('layouts/layout')
+@include('partials/auth-header')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
 @section("content")
-        <div class="container">
+<div class="container auth-container">
+    <div class="auth-inner-container">
         <h3 class="title">MOVIES CLUB <span class="title-inner">Admin Sign-up</span></h3>
         @if(Session::has("success"))
             <div class="alert alert-success">{{Session::get("success")}}</div>
@@ -68,6 +70,6 @@
                 </div>
                     {{-- <img src="{{url('images/bg_images/cinema.jpg' )}}" alt="Profile picture" class="bg-picture"/> --}}
             </form>
-            
+            </div>    
         </div>
 @endsection

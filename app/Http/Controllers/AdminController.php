@@ -26,18 +26,18 @@ class AdminController extends Controller
 
     public function adminProfile(){
         if($this->auth() == false){
-            return view("pages/admin/loginAdmin-midterm-seg-66");
+            return view("pages/admin/login-admin");
         }else{
-            return view("pages/admin/adminProfile-midterm-seg-66");
+            return view("pages/admin/admin-profile");
         }
 
     }
 
-    public function addAdminPage(){
-        return view("pages/admin/addAdmin-midterm-seg-66");
+    public function registerAdminPage(){
+        return view("pages/admin/register-admin");
     }
 
-    public function addAdmin(Request $request){
+    public function registerAdmin(Request $request){
 
         if(request()->profilePicture){
             $profile_picture = time(). "." . request()->profilePicture->getClientOriginalExtension(); 
@@ -85,17 +85,17 @@ class AdminController extends Controller
 
     public function listAdmins(){
         if($this->auth() == false){
-            return view("pages/admin/loginAdmin-midterm-seg-66");
+            return view("pages/admin/sign-in-admin");
         }else{
             $data = Admin::get();
-            return view("pages/admin/listAdmins-midterm-seg-66", compact('data'));
+            return view("pages/admin/list-admins", compact('data'));
         }
         
     }
 
 
     public function signInAdminPage(){
-        return view("pages/admin/loginAdmin-midterm-seg-66");
+        return view("pages/admin/sign-in-admin");
     }
 
     public function signInAdmin(Request $request){

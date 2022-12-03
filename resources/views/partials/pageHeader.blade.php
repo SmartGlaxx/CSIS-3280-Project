@@ -81,9 +81,9 @@
             </div>
             </div>
           <?php if($profilePicture != null){?>
-            <img src="{{url('images/profilePictures/'. $profilePicture )}}" alt="Profile picture" class="profile-picture"/>
+            <a href="{{url('/user-profile/' . $userName)}}" ><img src="{{url('images/profilePictures/'. $profilePicture )}}" alt="Profile picture" class="profile-picture"/></a>
         <?php }else{ ?>
-            <img src="{{url('images/placeholders/profile_placeholder.jpg')}}" alt="Profile picture" class="profile-picture"/>
+            <a href="{{url('/user-profile/' . $userName)}}" ><img src="{{url('images/placeholders/profile_placeholder.jpg')}}" alt="Profile picture" class="profile-picture"/></a>
         <?php }  ?>
 
       </nav>

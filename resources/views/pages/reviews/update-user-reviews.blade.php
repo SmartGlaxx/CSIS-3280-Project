@@ -1,6 +1,6 @@
-@extends("pages/user/userProfile-midterm-seg-66")
+@extends('partials/pageHeader')
 @section("header")
-    Smart Egbuchulem - 300333966
+    {{-- Smart Egbuchulem - 300333966 --}}
 @endsection
 
 @section("innerContent")
@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>Review</td>
-                <td><textarea type="text" name= "post" value="{{$review["post"]}}" class="form-control"></textarea>
+                <td><textarea type="text" name= "post" class="form-control">{{$review["post"]}}</textarea>
                 @error("post")
                 <div>{{$message}}</div>
                 @enderror

@@ -15,12 +15,12 @@ Route::get("/about", [PageController::class, "showAboutPage"]);
 //show points page
 Route::get("/points", [PageController::class, "showPointsPage"]);
 
-//show add admin form
-Route::get('/add-admin', [AdminController::class, "addAdminPage"]);
+//show register admin form
+Route::get('/register-admin', [AdminController::class, "registerAdminPage"]);
+//function to register on admin
+Route::post('/register-admin', [AdminController::class, "registerAdmin"]);
 //show all admin list
 Route::get("/list-admins", [AdminController::class, "listAdmins"]);
-//function to operate on admin
-Route::post('/add-admin', [AdminController::class, "addAdmin"]);
 //sign-in an admin page
 Route::get("/sign-in-admin",[AdminController::class, "signInAdminPage"]);
 //sign-in an admin function
@@ -39,10 +39,10 @@ Route::get("/delete-admin-profile/{id}", [AdminController::class, "deleteProfile
 
 
 
-//show add user form
-Route::get('/add-user', [UserController::class, "addUserPage"]);
-// function to operate on users
-Route::post('/add-user', [UserController::class, "addUser"]);
+//show register user form
+Route::get('/register-user', [UserController::class, "registerUserPage"]);
+// function to register user
+Route::post('/register-user', [UserController::class, "registerUser"]);
 //show sign-in user form
 Route::get('/sign-in-user', [UserController::class, "signInUserPage"]);
 //sign-in user function

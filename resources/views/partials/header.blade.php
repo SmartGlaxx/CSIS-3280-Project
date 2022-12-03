@@ -2,36 +2,6 @@
 <div class="page-top">
     <img src="{{url('images/bg_images/cinema.jpg')}}" alt="landinpage picture"  class="landing-page-picture" />
      <div class="overlay"></div>
-        {{-- <div class="main">
-                <div class="profile-header">
-                <a href="/"><h2 class="title">Movies Club</h2></a>
-                <div>
-                    <a href="/about" class="btn btn-default">About Movies Club</a>
-                    <a href="/points" class="btn btn-default">What are points</a>
-                </div>
-                <div class="profile-box">
-                <div class="dropdown" >
-                    <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="profile-name"><span>Admin</span></span> 
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a href="/add-admin" class="btn dropdown-item">Sign-up</a>
-                    <a href="/sign-in-admin" class="btn dropdown-item">Sign-in</a>
-                    </div>
-                </div>
-                <div class="dropdown" >
-                    <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="profile-name"><span>Movie Fan</span></span> 
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a href="/add-user" class="btn dropdown-item">Sign-up</a>
-                    <a href="/sign-in-user" class="btn dropdown-item">Sign-in</a>
-                    </div>
-                </div>
-                 <img src="{{url('images/bg_images/cinema.jpg' )}}" alt="Profile picture" class="profile-picture"/>
-            </div>
-            </div>
-        </div> --}}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">
                 <img src="{{url('images/logo/logo.png')}}" alt="M" class="logo"/>
@@ -55,7 +25,7 @@
                     <span class="profile-name"><span>Admin</span></span> 
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <a href="/add-admin" class="btn dropdown-item">Sign-up</a>
+                <a href="/register-admin" class="btn dropdown-item">Sign-up</a>
                 <a href="/sign-in-admin" class="btn dropdown-item">Sign-in</a>
                 </div>
             </div>
@@ -64,7 +34,7 @@
                     <span class="profile-name"><span>Movie Fan</span></span> 
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <a href="/add-user" class="btn dropdown-item">Sign-up</a>
+                <a href="/register-user" class="btn dropdown-item">Sign-up</a>
                 <a href="/sign-in-user" class="btn dropdown-item">Sign-in</a>
                 </div>
             </div>

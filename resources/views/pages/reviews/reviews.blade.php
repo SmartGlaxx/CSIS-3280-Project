@@ -1,10 +1,10 @@
-@extends("pages/admin/adminProfile-midterm-seg-66")
+@extends('partials/pageHeader')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection
 
 @section("innerContent")
-    <div class="container subPage">
+    <div class="container subPage reviews-page">
         <div>
             <?php $username = session("userUserName") ?>
             <h4>Reviews for {{$title}}</h4>

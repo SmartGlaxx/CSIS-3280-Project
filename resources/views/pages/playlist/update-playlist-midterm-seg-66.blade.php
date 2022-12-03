@@ -1,4 +1,4 @@
-@extends('pages/admin/adminProfile-midterm-seg-66')
+@extends('pages/admin/admin-profile')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection

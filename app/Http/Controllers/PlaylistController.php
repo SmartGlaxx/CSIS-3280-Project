@@ -104,12 +104,8 @@ class PlaylistController extends Controller
             return view("pages/user/signInUser-miderm-seg-66");
         }else{
             $movies = Http::withHeaders([
-
                 'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
 		        'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
-
-                // 'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-                // 'X-RapidAPI-Key' => '1868d35fdcmsh44fa58761090c79p1b3d23jsn2c67cb13e1f1'
             ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
             ['query' => "*"]);
             $playlistData = Playlist::where('id','=', $playlistId)
@@ -145,8 +141,6 @@ class PlaylistController extends Controller
         $movies = Http::withHeaders([
             'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
 		    'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
-            // 'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-            // 'X-RapidAPI-Key' => '1868d35fdcmsh44fa58761090c79p1b3d23jsn2c67cb13e1f1'
         ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
         ['query' => "*"]);
 
