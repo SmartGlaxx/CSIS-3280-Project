@@ -7,7 +7,7 @@
 @section("content")
 <div class="container auth-container">
         <div class="auth-inner-container">
-    <h3 class="title">MOVIES CLUB <span class="title-inner">User Sign-in</span></h3>
+    <h3 class="title">MOVIES CLUB <span class="title-inner">Movie Fan Sign-in</span></h3>
     @if(Session::has("success"))
         <div class="alert alert-success">{{Session::get("success")}}</div>
     @endif

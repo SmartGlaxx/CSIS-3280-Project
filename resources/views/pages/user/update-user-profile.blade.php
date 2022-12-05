@@ -1,4 +1,4 @@
-@extends("pages/user/userProfile-midterm-seg-66")
+@extends('partials/pageHeader')
 @section("header")
     Smart Egbuchulem - 300333966
 @endsection

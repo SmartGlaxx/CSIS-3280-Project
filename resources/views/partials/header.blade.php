@@ -15,11 +15,12 @@
                   <a class="nav-link" href="/about">About Movies Club</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/points">Earn movie points</a>
+                  <a class="nav-link" href="/points">Earn View Cards</a>
                 </li>
               </ul>
               
             </div>
+            @if(!session("userUserName") && !session('adminUserName'))
             <div class="dropdown" >
                 <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="profile-name"><span>Admin</span></span> 
@@ -30,15 +31,36 @@
                 </div>
             </div>
             <div class="dropdown" >
-                <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="profile-name"><span>Movie Fan</span></span> 
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
                 <a href="/register-user" class="btn dropdown-item">Sign-up</a>
                 <a href="/sign-in-user" class="btn dropdown-item">Sign-in</a>
                 </div>
             </div>
-
+            @endif
+            @if(session("userUserName") || session('adminUserName'))
+            <?php 
+            $name = session("userUserName") ? session("userUserName") : session("adminUserName");
+            ?>
+              <h6 style="color: white">
+                <div class="dropdown" >
+                  <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="profile-name"><span>{{session("userUserName") ? ucfirst(session("userUserName")) : session("adminUserName") }}</span></span> 
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                  @if(session("userUserName") && !session("adminUserName"))
+                  <a href="/user-profile/{{session("userUserName")}}" class="btn dropdown-item">My profile</a>
+                  @endif
+                  @if(session("adminUserName") && !session("userUserName"))
+                  <a href="/admin-profile/{{session("adminUserName")}}" class="btn dropdown-item">My profile</a>
+                  @endif
+                  <a href="/sign-out-user" class="btn dropdown-item">Sign-out</a>
+                  </div>
+              </div>
+              </h6>
+            @endif
 
           </nav>
 </div>

@@ -1,7 +1,7 @@
 @include('partials/header')
 <div class="page">
-    <h3>Points</h3>
-    <h5>How do you earn movie points?</h5>
+    <h3>View Cards</h3>
+    <h5>How do you earn movie View Cards?</h5>
     <img src="{{url('images/bg_images/cinema.jpg')}}" alt="picture" class="picture"/>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam

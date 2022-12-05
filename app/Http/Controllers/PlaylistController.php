@@ -26,9 +26,9 @@ class PlaylistController extends Controller
 
     public function createPlaylistPage(){
         if($this->auth() == false){
-            return view("pages/admin/loginAdmin-midterm-seg-66");
+            return view("pages/admin/sign-in-admin");
         }else{
-            return view("pages/playlist/add-playlist-midterm-seg-66");
+            return view("pages/playlist/add-playlist");
         }
     }
 
@@ -51,11 +51,11 @@ class PlaylistController extends Controller
 
     public function listAdminPlaylistPage($adminUserName){
         if($this->auth() == false){
-            return view("pages/user/signInUser-miderm-seg-66");
+            return view("pages/user/sign-in-user");
         }else{
             $playlist = Playlist::where('adminUserName', $adminUserName)->get();
             
-            return view('/pages/playlist/list-playlist-midterm-seg-66')
+            return view('/pages/playlist/list-playlists')
             ->with('playlists', json_decode($playlist, true));  
 
         }
@@ -65,17 +65,17 @@ class PlaylistController extends Controller
         $userUserName = User::where('userName','=',$userUserName)->first();
      
         if($this->auth() == false){
-            return view("pages/user/signInUser-miderm-seg-66");
+            return view("pages/user/sign-in-user");
         }else{
             $playlist = Playlist::where('adminUserName', $adminUserName)->get();
             $playlistsMovies = json_decode($playlist, true);
 
-            return view('/pages/playlist/list-playlist-midterm-seg-66')
+            return view('/pages/playlist/list-playlists')
             ->with(['playlists' => $playlistsMovies, 'user' => $userUserName]);  
 
         }
     }
-
+ 
     public function addMovieToPlaylist($id, $playlistId, $themeColor, $adminUserName, Request $request){
         $playList = Playlist::find($playlistId);
         
@@ -101,7 +101,7 @@ class PlaylistController extends Controller
     public function showMoviesInPlayList($playlistId, $playlistColor, $adminUserName){
        
         if($this->auth() == false){
-            return view("pages/user/signInUser-miderm-seg-66");
+            return view("pages/user/sign-in-user");
         }else{
             $movies = Http::withHeaders([
                 'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
@@ -121,14 +121,14 @@ class PlaylistController extends Controller
         
             $movieIds = explode("|", $playlistData["movieId"]);
         
-            return redirect()->back()->with(['movieIds'=> $movieIds, 'allMovies'=> $allMovies, 'playlistColor' => $playlistColor]);
+            return redirect()->back()->with(['movieIds'=> $movieIds, 'allMovies'=> $allMovies, 'themeColor' => $playlistColor]);
         
         }
   }
 
   public function updatePlayList($id){
     if($this->auth() == false){
-        return view("pages/user/signInUser-miderm-seg-66");
+        return view("pages/user/sign-in-user");
     }else{
     
         $playlist = Playlist::where('id','=',$id)->first();
@@ -162,7 +162,7 @@ class PlaylistController extends Controller
                 }
             }
         }
-        return view("pages/playlist/update-playlist-midterm-seg-66")
+        return view("pages/playlist/update-playlist")
         ->with(['id'=>$id, 'playlistName'=>$playlistName, 'themeColor' => $themeColor, 'movieId' => $movieId, 
     'moviesArray' => $moviesArray]);
 
@@ -172,7 +172,7 @@ class PlaylistController extends Controller
   public function updatePlayListFunction(Request $request, $id){
 
     if($this->auth() == false){
-        return view("pages/user/signInUser-miderm-seg-66");
+        return view("pages/user/sign-in-user");
     }else{
         
         $playlist = Playlist::where('id','=',$id)->first();
@@ -211,7 +211,7 @@ class PlaylistController extends Controller
   }
     public function deletePlayList($id){
         if($this->auth() == false){
-            return view("pages/user/signInUser-miderm-seg-66");
+            return view("pages/user/sign-in-user");
         }else{
             Playlist::where('id','=',$id)->delete();
             return redirect()->back()->with("deleted", "Playlist deleted");

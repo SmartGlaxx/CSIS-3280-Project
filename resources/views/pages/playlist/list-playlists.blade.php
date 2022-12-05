@@ -16,6 +16,7 @@
         $userName = session('userUserName');
         $userAdminsUserName = session('userAdminsUserName');
     }
+    // $themeColor = 
  ?>
     <div class="container subPage">
         <div class="playlist-header">
@@ -49,7 +50,9 @@
                 $userName = session('adminUserName');
             ?>
                 <tr>
-                    <td style="background: #{{$playlistColor}}"></td>
+                    <td>
+                        <div style="background: #{{$playlistColor}}" class="playlistcolor"></div>
+                    </td>
                     <td>{{$playlistName}}</td>
                     <td>
                     @if($isAdmin == true)

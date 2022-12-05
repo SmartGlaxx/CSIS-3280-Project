@@ -103,7 +103,7 @@ class UserController extends Controller
     }
 
     public function signInUserPage(Request $request){
-    return view("pages/user/sign-in-user");
+        return view("pages/user/sign-in-user");
     }
       
 
@@ -128,6 +128,12 @@ class UserController extends Controller
             $request->session()->put('userProfilePicture', $userSignIn['profilePicture']);
             $request->session()->put('userCoverPicture', $userSignIn['coverPicture']);
             $request->session()->put('isAdmin', 0);
+
+
+            if(session()->has("adminUserName")){
+                session()->pull("adminUserName");
+            }
+
             return redirect("/user-profile/{$user->userName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");
@@ -201,7 +207,7 @@ class UserController extends Controller
         if(session()->has("userUserName")){
             session()->pull("userUserName");
         }
-        return redirect("/sign-in-user");
+        return redirect("/");
     }
 
 

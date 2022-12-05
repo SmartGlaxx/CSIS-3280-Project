@@ -10,16 +10,16 @@ class PageController extends Controller
 {
     public function showLandingPage(){
 
-        return view("pages/pages/homepage");
+        return view("pages/pages/home-page");
     }
 
     public function showAboutPage(){
 
-        return view("pages/pages/aboutpage");
+        return view("pages/pages/about-page");
     }
     public function showPointsPage(){
 
-        return view("pages/pages/pointspage");
+        return view("pages/pages/view-card-page");
     }
     
 }

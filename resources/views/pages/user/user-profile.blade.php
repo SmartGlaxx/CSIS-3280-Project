@@ -5,22 +5,19 @@
 
 @section("innerContent")
 <?php  
-$slideImages = array();
-$rand1 = rand(1, 40);
-for($i = $rand1; $i < $rand1+1; $i++){
-    $slideImages1  = $allMovies[$i]["backgroundImage"]["url"];
-    $title1 = $allMovies[$i]["title"];
+// $slideImages = array();
+$movieInfo = array();
+function randomMovie($allMovies){
+    $rand = rand(1, count($allMovies) - 1);
+    for($i = $rand; $i < $rand+1; $i++){
+        $slideImage  = $allMovies[$i]["backgroundImage"]["url"];
+        $title = $allMovies[$i]["title"];
+        $movieInfo[0] = $slideImage;
+        $movieInfo[1] = $title;
+    }
+    return $movieInfo;
 }
-$rand2 = rand(1, 40);
-for($i = $rand2; $i < $rand2+1; $i++){
-    $slideImages2  = $allMovies[$i]["backgroundImage"]["url"];
-    $title2 = $allMovies[$i]["title"];
-}
-$rand3 = rand(1, 40);
-for($i = $rand3; $i < $rand3+1; $i++){
-    $slideImages3  = $allMovies[$i]["backgroundImage"]["url"];
-    $title3 = $allMovies[$i]["title"];
-}
+
 
 ?>
     <div class="container subPage" >
@@ -33,21 +30,21 @@ for($i = $rand3; $i < $rand3+1; $i++){
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img class="d-block w-100 slide-image" src={{$slideImages1}} alt="Trending movies">
+                  <img class="d-block w-100 slide-image" src={{randomMovie($allMovies)[0]}} alt="Trending movies">
                   <div class="carousel-caption d-none d-md-block">
-                    <h2>{{$title2}}</h2>
+                    <h2>{{ randomMovie($allMovies)[1]}}</h2>
                 </div>                    
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100 slide-image" src={{$slideImages2}} alt="Trending movies">
+                    <img class="d-block w-100 slide-image" src={{randomMovie($allMovies)[0]}} alt="Trending movies">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>{{$title2}}</h2>
+                        <h2>{{ randomMovie($allMovies)[1]}}</h2>
                     </div>                    
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100 slide-image" src={{$slideImages3}} alt="Second slide">
+                    <img class="d-block w-100 slide-image" src={{randomMovie($allMovies)[0]}} alt="Second slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>{{$title3}}</h2>
+                        <h2>{{ randomMovie($allMovies)[1]}}</h2>
                     </div>                    
                 </div>
             </div>
@@ -59,6 +56,21 @@ for($i = $rand3; $i < $rand3+1; $i++){
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
+          </div>
+          <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <h4 class="box-office-subheading">Box office classics</h4>
+                <div class="col-sm-12 col-md-6 image-box">
+                    <img class="d-block w-100 boc-image" src={{randomMovie($allMovies)[0]}} alt="Second slide">
+                </div>
+                <div class="col-sm-12 col-md-6 image-box">
+                    <img class="d-block w-100 boc-image" src={{randomMovie($allMovies)[0]}} alt="Second slide">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 image-box">
+                <h3 class="box-office-subheading">Kids favourites</h3>
+                <img class="d-block w-100 boc-image" src={{randomMovie($allMovies)[0]}} alt="Second slide">
+            </div>
           </div>
     </div>
 

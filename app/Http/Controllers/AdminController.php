@@ -117,6 +117,11 @@ class AdminController extends Controller
             $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
             $request->session()->put('adminCoverPicture', $adminSignIn['coverPicture']);
             $request->session()->put('isAdmin', 1);
+
+            if(session()->has("userUserName")){
+                session()->pull("userUserName");
+            }
+
             return redirect("/admin-profile/{$admin->adminUserName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");
@@ -175,7 +180,7 @@ class AdminController extends Controller
         if(session()->has("adminUserName")){
             session()->pull("adminUserName");
         }
-        return redirect("/sign-in-admin");
+        return redirect("/");
     }
 
     function deleteProfileFunction($adminUserName){

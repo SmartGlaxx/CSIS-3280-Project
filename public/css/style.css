@@ -62,6 +62,20 @@ a .title{
     float:right
 }
 
+.playlistcolor{
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 0.2rem solid gray;
+    border-radius: 50%;
+}
+
+.rating{
+    height: 2rem;
+    width: 2rem;
+    border: 0.2rem solid gray;
+    border-radius: 50%;
+}
+
 .thumbnail{
     width:5rem;
     height: 5rem;
@@ -150,9 +164,6 @@ Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
     margin: 0.7rem;
     border: 0.3rem solid #444;
     object-fit: cover;
-    /* right: 4rem;
-    position: absolute;
-    top: 0rem */
 }
 
 .cover-picture{
@@ -189,7 +200,6 @@ Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
 }
 
 .bg-picture{
-    /* height: 100%; */
     width: 100%;
     object-fit: cover;
 }
@@ -199,10 +209,6 @@ Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
     background: #000;
 }
 
-/* .adminlist{
-    height: 10rem;
-    overflow-y: auto ;
-} */
 
 .profile-picture-dropdown{
     width: 2.5rem;
@@ -220,27 +226,10 @@ Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
     position: absolute;
     font-size: 3rem;
     color: #cce;
-    background: #002;
+    background: linear-gradient(123deg, #300, #002);
 }
-/* .innerAdminOptions{
-    background-color: inherit;
-    width: 10rem;
-    height: 10rem;
-    overflow: auto;
-} */
 
-/* tables */
-/* .list-table th, .list-table td {
-    border: 1px solid white;
-    border-radius: 10%;
-
-} */
-
-table{
-    /* background: #003; */
-}
 th, td {
-    /* background-color: #2e3636; */
     background-color: none;
     color: #ddd;
     padding: 0.6rem;
@@ -332,16 +321,7 @@ th, td {
     height: 100%;
     border-bottom: 0.5rem solid gray;
     width: 60%;
-    /* animation: myAnimation 5s linear 2s infinite alternate; */
 }
-
-/* @keyframes myAnimation {
-    0%   {background-color:red; left:0px; top:0px;}
-    25%  {background-color:yellow; left:200px; top:0px;}
-    50%  {background-color:blue; left:200px; top:200px;}
-    75%  {background-color:green; left:0px; top:200px;}
-    100% {background-color:red; left:0px; top:0px;}
-  } */
 
 @-moz-keyframes spin { 
     0% {
@@ -439,7 +419,6 @@ th, td {
     margin: 4rem;
     opacity: 0.9;
     border-radius: 1rem;
-    /* background: linear-gradient(123deg, rgb(131, 20, 20), blue); */
 }
 
 .hero-title{
@@ -471,9 +450,10 @@ th, td {
 
 .page{
     padding: 5rem; 
-    margin: 4rem;
+    margin: 7rem;
     z-index: 5;
     position: absolute;
+    text-align: justify;
 }
 
 .page-top{
@@ -482,15 +462,26 @@ th, td {
     top: 0; 
     width: 100%
 }
+.graph{
+    color: #aab;
+}
+.graph h5{
+    margin: 2rem 0;
+}
 
 
 .movie-card{
-    background: rgb(31, 31, 73);
+    background: linear-gradient(123deg, #002, #002);
     padding: 2rem;
     border-radius: 1rem;
     color: #aab;
+    border-radius: 0 0 10% 10%;
+    border-bottom: 1px solid #fff;
 }
 
+.movie-card div{   
+    font-size: 2rem;
+}
 
 /* Nav */
 .logo{
@@ -513,6 +504,92 @@ th, td {
     color: #eee;
 }
 
-/* @media screen and (max-width: 991px){
-    .profile-picture{top: 6rem; right: 1rem}
-} */
+.box-office-subheading{
+    margin-top: 2rem
+}
+
+.image-box{
+    padding: 0.5rem;
+}
+
+.dropdown{
+    z-index: 18;
+    position: relative;
+}
+
+.progress{
+    padding: 1.5rem;
+    box-sizing: content-box;
+    background: none;
+}
+.progress-label{
+    font-weight:400; 
+    font-size: 1.1rem;
+    background: none;
+    position: absolute;
+    margin-left: 1rem
+}
+.progress-bar{
+    background: linear-gradient(123deg, #500, rgb(59, 59, 173));
+    padding: 1rem;
+    box-sizing: content-box;
+    border-radius: 0 1rem 1rem 0;
+}
+.empty-div{
+    height: 3rem;
+}
+
+.circle-chat{
+    border-radius: 50%;
+    background: radial-gradient(rgb(207, 40, 40), rgb(31, 31, 169));
+    background: radial-gradient(darkred, navy);
+    height: 25rem; 
+    width: 25rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.circle-chat div{
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ddd;
+}
+.circle-chat-container{
+    background: #002; 
+}
+.circle-chat-box{
+    position: relative; 
+    height: 30rem;
+
+}
+
+.chat-divider{
+    width: 12.5rem; 
+    height: 12.5rem;
+    background: #002; 
+    position: absolute;
+    display: flex;
+    color: #ddd;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 12.5rem 0 0 0;
+    background: rgba(20,20,25, 0.4);
+    border-bottom: 1px solid #888;
+    border-right: 1px solid #888;
+}
+
+.chat-divider div{
+    transform: rotate(315deg);
+}
+
+.accordion-item{
+    background-color: rgb(10,10,35);
+    color: #ddd;
+}
