@@ -5,6 +5,10 @@
 @endsection
 
 @section("content")
+<div class="img-box">
+    <img src="{{url('images/bg_images/cinema.jpg')}}" alt="landinpage picture"  class="landing-page-picture" />
+    <div class="overlay"></div>
+</div>
 <div class="container auth-container">
         <div class="auth-inner-container">
     <h3 class="title">MOVIES CLUB <span class="title-inner">Movie Fan Sign-in</span></h3>
@@ -17,21 +21,25 @@
         <form method="post" action="{{url('sign-in-user')}}" class="form-control form">
             @csrf
             <div class="table-responsive">
-            <table class="sign-in-table">
-            <tr><td><label class="form-label" >Email or Username</label></td>
-            <td><input type="text" name="userUserName" value="{{old('userUserName')}}" class="form-control"/></td></tr>
+            <table class="sign-in">
+            <tr><td><label class="form-label" >Email or Username</label></td></tr>
+            <tr><td><input type="text" name="userUserName" value="{{old('userUserName')}}" class="signin-form-control form-control"/></td></tr>
             @error("userUserName")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
-            <tr><td><label class="form-label" >Password</label></td>
-            <td><input type="password" name="password"  class="form-control"/></td></tr>
+            <tr><td><label class="form-label" >Password</label></td></tr>
+            <tr><td><input type="password" name="password"  class="signin-form-control form-control"/></td></tr>
             @error("password")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
             <input type="hidden" value="true" name="isAdmin"/>
+            <tr class="row">
+                <td class="col-sm-6" ><button type="submit" name="" class="btn btn-default auth-btn">Sign In</button></td>
+                <td></td>
+            </tr>
             <tr>
-                <td>New User? <a href="{{url('add-user')}}" class="btn btn-default">Sign-up</a></td>
-                <td><button type="submit" name="registerAdmin" class="btn btn-default auth-btn">Sign In</button></td></tr>
+                <td>New User? <a href="{{url('register-user')}}" class="btn btn-default">Sign-up</a></td>
+            </tr>
             </table>
             </div>
         </form>

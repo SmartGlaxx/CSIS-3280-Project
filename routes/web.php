@@ -12,8 +12,8 @@ use App\Http\Controllers\ReviewController;
 Route::get("/", [PageController::class, "showLandingPage"]);
 //show about page
 Route::get("/about", [PageController::class, "showAboutPage"]);
-//show points page
-Route::get("/points", [PageController::class, "showPointsPage"]);
+//show viewcard page
+Route::get("/viewcard", [PageController::class, "showViewcardPage"]);
 
 //show register admin form
 Route::get('/register-admin', [AdminController::class, "registerAdminPage"]);
@@ -108,3 +108,5 @@ Route::get("/delete-review/{id}", [ReviewController::class, "deleteReview"]);
 
 
 
+//switch from light to dark mode
+Route::get('/switch', [PageController::class, "switchMode"]);

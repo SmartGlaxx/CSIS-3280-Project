@@ -1,8 +1,6 @@
 @extends('layouts/layout')
-<div class="page-top">
-    <img src="{{url('images/bg_images/cinema.jpg')}}" alt="landinpage picture"  class="landing-page-picture" />
-     <div class="overlay"></div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="page-top" style="z-index: 100">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <a class="navbar-brand" href="/">
                 <img src="{{url('images/logo/logo.png')}}" alt="M" class="logo"/>
             </a>
@@ -15,13 +13,11 @@
                   <a class="nav-link" href="/about">About Movies Club</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/points">Earn View Cards</a>
+                  <a class="nav-link" href="/viewcard">Earn View Cards</a>
                 </li>
-              </ul>
-              
-            </div>
-            @if(!session("userUserName") && !session('adminUserName'))
-            <div class="dropdown" >
+
+                @if(!session("userUserName") && !session('adminUserName'))
+            <li class="dropdown" >
                 <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="profile-name"><span>Admin</span></span> 
                 </button>
@@ -29,8 +25,8 @@
                 <a href="/register-admin" class="btn dropdown-item">Sign-up</a>
                 <a href="/sign-in-admin" class="btn dropdown-item">Sign-in</a>
                 </div>
-            </div>
-            <div class="dropdown" >
+            </li>
+            <li class="dropdown" >
                 <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="profile-name"><span>Movie Fan</span></span> 
                 </button>
@@ -38,14 +34,32 @@
                 <a href="/register-user" class="btn dropdown-item">Sign-up</a>
                 <a href="/sign-in-user" class="btn dropdown-item">Sign-in</a>
                 </div>
-            </div>
+              </li>
             @endif
+
             @if(session("userUserName") || session('adminUserName'))
             <?php 
             $name = session("userUserName") ? session("userUserName") : session("adminUserName");
             ?>
-              <h6 style="color: white">
-                <div class="dropdown" >
+            
+            <li class="dropdown on-display nav-item" >
+              <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="profile-name"><span>{{session("userUserName") ? ucfirst(session("userUserName")) : session("adminUserName") }}</span></span> 
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              @if(session("userUserName") && !session("adminUserName"))
+              <a href="/user-profile/{{session("userUserName")}}" class="btn dropdown-item">My profile</a>
+              @endif
+              @if(session("adminUserName") && !session("userUserName"))
+              <a href="/admin-profile/{{session("adminUserName")}}" class="btn dropdown-item">My profile</a>
+              @endif
+              <a href="/sign-out-user" class="btn dropdown-item">Sign-out</a>
+              </div>
+            </li>
+            
+
+            <h6>
+                <div class="dropdown off-display" >
                   <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="profile-name"><span>{{session("userUserName") ? ucfirst(session("userUserName")) : session("adminUserName") }}</span></span> 
                   </button>
@@ -62,5 +76,45 @@
               </h6>
             @endif
 
+              </ul>
+            </div>
+            {{-- @if(session("userUserName") || session('adminUserName'))
+            <?php 
+            // $name = session("userUserName") ? session("userUserName") : session("adminUserName");
+            ?>
+            
+            <li class="dropdown on-display nav-item" >
+              <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="profile-name"><span>{{session("userUserName") ? ucfirst(session("userUserName")) : session("adminUserName") }}</span></span> 
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              @if(session("userUserName") && !session("adminUserName"))
+              <a href="/user-profile/{{session("userUserName")}}" class="btn dropdown-item">My profile</a>
+              @endif
+              @if(session("adminUserName") && !session("userUserName"))
+              <a href="/admin-profile/{{session("adminUserName")}}" class="btn dropdown-item">My profile</a>
+              @endif
+              <a href="/sign-out-user" class="btn dropdown-item">Sign-out</a>
+              </div>
+            </li>
+            
+
+            <h6>
+                <div class="dropdown off-display" >
+                  <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="profile-name"><span>{{session("userUserName") ? ucfirst(session("userUserName")) : session("adminUserName") }}</span></span> 
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                  @if(session("userUserName") && !session("adminUserName"))
+                  <a href="/user-profile/{{session("userUserName")}}" class="btn dropdown-item">My profile</a>
+                  @endif
+                  @if(session("adminUserName") && !session("userUserName"))
+                  <a href="/admin-profile/{{session("adminUserName")}}" class="btn dropdown-item">My profile</a>
+                  @endif
+                  <a href="/sign-out-user" class="btn dropdown-item">Sign-out</a>
+                  </div>
+              </div>
+              </h6>
+            @endif --}}
           </nav>
 </div>

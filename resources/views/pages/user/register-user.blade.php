@@ -5,6 +5,10 @@
 @endsection
 
 @section("content")
+<div class="img-box">
+    <img src="{{url('images/bg_images/cinema.jpg')}}" alt="landinpage picture"  class="landing-page-picture" />
+    <div class="overlay"></div>
+</div>
     <div class="container auth-container">
         <div class="auth-inner-container">
         <h3 class="title">MOVIES CLUB <span class="title-inner">Movie Fan Sign-up</span></h3>
@@ -14,7 +18,7 @@
         @if(Session::has("failed"))
             <div class="alert alert-danger">{{Session::get("failed")}}</div>
         @endif
-            <form method="post" action="{{url('add-user')}}" enctype="multipart/form-data" class="form-control form">
+            <form method="post" action="{{url('register-user')}}" enctype="multipart/form-data" class="form-control form">
                 @csrf
                 <table class="sign-up-table">
                 <tr><td><label class="form-label" >First Name</label></td>

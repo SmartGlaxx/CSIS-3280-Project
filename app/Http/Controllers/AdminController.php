@@ -26,7 +26,7 @@ class AdminController extends Controller
 
     public function adminProfile(){
         if($this->auth() == false){
-            return view("pages/admin/login-admin");
+            return view("pages/admin/sign-in-admin");
         }else{
             return view("pages/admin/admin-profile");
         }

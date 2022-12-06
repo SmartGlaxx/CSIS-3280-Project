@@ -3,6 +3,17 @@ body{
     background-color: rgb(10,10,35);
 }
 
+/* .light{
+    --background: rgb(10,10,35);
+    --color: rgb(220,220,220);
+    --navbar-bg: linear-gradient(123deg, rgb(139, 98, 98), rgb(84, 84, 172));
+}
+
+.dark{
+    --background-color: rgb(220,220,220);
+    --color: rgb(10,10,35);
+    --navbar-bg: linear-gradient(123deg, #200, #003);
+} */
 a{
     text-decoration: none;
 }
@@ -149,7 +160,7 @@ a .title{
 }
 
 .navbar { 
-    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,0,0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(221,221,221)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 /*
 CSS to change bootstrap button color.
 Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
@@ -227,6 +238,7 @@ Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
     font-size: 3rem;
     color: #cce;
     background: linear-gradient(123deg, #300, #002);
+    background: rgb(10,10,35);
 }
 
 th, td {
@@ -247,6 +259,18 @@ th, td {
     height: 100vh;
     position: fixed;
     z-index: 3; 
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.img-box{
+    z-index: 2; 
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    height: 100vh; 
+    width: 100vw;
 }
 
 .auth-container{
@@ -280,6 +304,12 @@ th, td {
 .sign-up-table{
     position: absolute;
     z-index: 2;
+}
+.sign-in{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    margin-top: 2rem;
 }
 .sign-in-table{
     position: absolute;
@@ -449,11 +479,17 @@ th, td {
 }
 
 .page{
-    padding: 5rem; 
-    margin: 7rem;
+    margin: 13rem 5rem;
     z-index: 5;
+    top: 0;
     position: absolute;
     text-align: justify;
+    overflow: scroll;
+}
+@media screen and (max-width: 767px){
+    .page{
+        margin: 13rem 2.5rem;
+    }
 }
 
 .page-top{
@@ -489,6 +525,7 @@ th, td {
 }
 .navbar{
     background: linear-gradient(123deg, #200, #003);
+    /* background: var(--navbar-bg); */
     padding: 1rem 2rem;
     position: fixed;
     top: 0;
@@ -592,4 +629,24 @@ th, td {
 .accordion-item{
     background-color: rgb(10,10,35);
     color: #ddd;
+}
+
+.off-display{
+    display: none;
+}
+
+
+@media screen and (min-width: 767px){
+    .signin-form-control{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 991px){
+    .off-display{
+        display: block;
+    }
+    .on-display{
+        display: none;
+    }
 }

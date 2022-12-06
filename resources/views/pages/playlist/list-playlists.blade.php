@@ -99,7 +99,9 @@
                                 <td>{{$movieTitle}}</td>
                                 <td>{{$movieReleaseYear}}</td>
                                 <td>{{$movieSynopsis}}</td>
+                                @if($isAdmin == false)
                                 <td><a href="{{url('/reviews/' . $id)}}" class="btn btn-default">Reviews</td>
+                                @endif
                             </tr>
                             <?php $count++; ?>
                         @endif

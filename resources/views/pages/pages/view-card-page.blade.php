@@ -1,4 +1,8 @@
 @include('partials/header')
+<div class="img-box">
+    <img src="{{url('images/bg_images/cinema.jpg')}}" alt="landinpage picture"  class="landing-page-picture" />
+    <div class="overlay"></div>
+</div>
 <div class="page">
     <h3>View Cards</h3>
     <h5>How do you earn movie View Cards?</h5>
