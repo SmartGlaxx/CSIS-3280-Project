@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('playlistName');
             $table->string('adminUserName');
             $table->string('themeColor');
+            $table->string('movieId');
             $table->timestamps();
         });
     }
