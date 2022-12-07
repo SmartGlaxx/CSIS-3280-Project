@@ -3,17 +3,6 @@ body{
     background-color: rgb(10,10,35);
 }
 
-/* .light{
-    --background: rgb(10,10,35);
-    --color: rgb(220,220,220);
-    --navbar-bg: linear-gradient(123deg, rgb(139, 98, 98), rgb(84, 84, 172));
-}
-
-.dark{
-    --background-color: rgb(220,220,220);
-    --color: rgb(10,10,35);
-    --navbar-bg: linear-gradient(123deg, #200, #003);
-} */
 a{
     text-decoration: none;
 }
@@ -21,12 +10,29 @@ a .title{
     font-size: 1.5rem;
     color: #aaa
 }
+body::-webkit-scrollbar {
+    width: 0.7em;
+  }
+   
+  body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background: white;
+  }
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(10,10,35);
+    outline: 1px solid rgb(145, 146, 174);
+    border-radius: 40rem;
+  }
+  body::-webkit-scrollbar-thumb::after{
+    content: "M";
+    position: absolute;
+  }
 .main-container{
-    /* margin: 0.5rem; */
     padding-top: 0rem;
 }
 .movies-container{
-    background-color: rgb(20,20,25);
+    background: #003;
     display: grid;
     grid-template-columns:repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap: 2rem;
@@ -40,11 +46,32 @@ a .title{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.25rem;
+    color: #ddf
 }
 .movie-img{
     width: 90%;
     margin: 5%
 }
+.movie-year{
+    color: #ddf;
+    font-style: italic;
+    float: right;
+}
+
+
+.review-time{
+    font-style: italic;
+    color: #aaa;
+    font-size: 0.8rem;
+    float: right;
+}
+.review-box{
+    margin: 1.3rem 0;
+    padding: 1rem;
+    max-width: 40rem;
+}
+
 .review-img{
     height: 40vh;
     object-fit: cover;
@@ -57,9 +84,10 @@ a .title{
     width: 100%;
     transition: all 1s;
     top: 50%;
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: justify;
-    background: rgba(20,20,25,0.8);
+    background: rgba(0,0,20,0.5);
+    color: #fff;
 }
 
 .movie-details:hover .synopsis{
@@ -120,7 +148,6 @@ a .title{
     background-color: rgba(20,20,25, 0.9);
 }
 .profile-header div{
-    /* display: block; */
     align-items: center; 
 }
 
@@ -134,11 +161,13 @@ a .title{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10rem;
+    border-radius: 4rem;
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 0 auto;
     color: rgb(170,175,210);
-    background-color: rgb(20,20,25);
+    background-color: #003;
+    /* color: wheat; */
+    /* margin: 10rem auto 0 */
 }
 .movies-header span{
     color: rgb(180,180,180);
@@ -162,7 +191,7 @@ a .title{
 .navbar { 
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(221,221,221)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 /*
-CSS to change bootstrap button color.
+This is CSS to change bootstrap nav button color.
 Source :: https://forum.bootstrapstudio.io/t/style-mobile-menu-button/9648/2
 */
 
@@ -318,17 +347,15 @@ th, td {
     margin-top: 10rem;
 }
 .create-review{
-    margin-top: 1rem
+    margin-top: 3rem
 }
 .review-table{
     position: absolute;
     z-index: 2;
-    width: 50%;
+    width: 40rem;
     margin-top: 1rem;
 }
-.sign-in-table{
-    /* margin-top: 30%; */
-}
+
 .form-bg-container{
     position: absolute;
     z-index: 1;
@@ -401,8 +428,16 @@ th, td {
 
 
 /* Buttons */
-.auth-btn{
-    float:right   
+.auth-btn, .review-buttons, .playlist-btns{
+    float: right
+}
+
+.cp-btn{
+    margin-top: 3rem
+}
+
+.add-btn:hover{
+    color: rgb(21, 168, 21)
 }
 .update-btn:hover{
     color: rgb(176, 106, 0)
@@ -475,20 +510,62 @@ th, td {
 .picture{
     float: left;
     width: 20rem;
-    margin: 2rem
+    margin-right: 2rem;
+    margin-bottom: 2rem;
 }
 
 .page{
-    margin: 13rem 5rem;
+    padding: 13rem 4rem;
     z-index: 5;
     top: 0;
+    width: 100%;
     position: absolute;
     text-align: justify;
-    overflow: scroll;
 }
+.pg-rating-guide{
+    width: 100%;
+    border-radius: 5px;
+    border-bottom: 1px solid #006;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.p-g-box{
+    display: flex
+}
+.p-g{
+    margin: 0 1rem;
+    display: flex;
+}
+
+.g-1, .g-2, .g-3, .g-4{
+    display: flex;
+    justify-content: center;
+    display: flex;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 1rem;
+    border: 2px solid darkgray;
+}
+.g-1{
+    background: green;
+}
+.g-2{
+    background: yellow;
+}
+
+.g-3{
+    background: orange;
+}
+.g-4{
+    background: red;
+}
+
+
 @media screen and (max-width: 767px){
     .page{
-        margin: 13rem 2.5rem;
+        /* padding: 5rem */
     }
 }
 
@@ -525,7 +602,6 @@ th, td {
 }
 .navbar{
     background: linear-gradient(123deg, #200, #003);
-    /* background: var(--navbar-bg); */
     padding: 1rem 2rem;
     position: fixed;
     top: 0;
@@ -578,10 +654,9 @@ th, td {
 
 .circle-chat{
     border-radius: 50%;
-    background: radial-gradient(rgb(207, 40, 40), rgb(31, 31, 169));
     background: radial-gradient(darkred, navy);
-    height: 25rem; 
-    width: 25rem;
+    height: 30rem; 
+    width: 30rem;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -592,7 +667,7 @@ th, td {
 .circle-chat div{
     margin-top: 2rem;
     font-size: 1.4rem;
-    font-weight: 800;
+    font-weight: 500;
     color: #ddd;
 }
 .circle-chat-container{
@@ -605,8 +680,8 @@ th, td {
 }
 
 .chat-divider{
-    width: 12.5rem; 
-    height: 12.5rem;
+    width: 15rem; 
+    height: 15rem;
     background: #002; 
     position: absolute;
     display: flex;
@@ -615,11 +690,11 @@ th, td {
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
     border-radius: 12.5rem 0 0 0;
     background: rgba(20,20,25, 0.4);
-    border-bottom: 1px solid #888;
-    border-right: 1px solid #888;
+    border-bottom: 1px solid rgb(89, 87, 99);
+    border-right: 1px solid gb(89, 87, 99);
 }
 
 .chat-divider div{
@@ -635,6 +710,21 @@ th, td {
     display: none;
 }
 
+.spacer-0{
+    padding-bottom: 15rem
+}
+
+.spacer-1{
+    padding-bottom: 20rem
+}
+.spacer-2{
+    padding-bottom: 10rem
+}
+
+.spacer-3{
+    padding-bottom: 6rem
+}
+
 
 @media screen and (min-width: 767px){
     .signin-form-control{
@@ -648,5 +738,30 @@ th, td {
     }
     .on-display{
         display: none;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .spacer-1{
+        padding-bottom: 35rem
+    }
+    .spacer-0{
+        padding-bottom: 20rem
+    }
+    .review-table{
+        width: 95%;
+    }
+    .picture{
+        width: 100%;
+        margin: 0;
+    }
+    .circle-chat{
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .chat-divider{
+        width: 9rem;
+        height: 9rem;
     }
 }

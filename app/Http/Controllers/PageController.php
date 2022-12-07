@@ -11,27 +11,15 @@ class PageController extends Controller
 {
     public function showLandingPage(){
 
-        return view("pages/pages/home-page");
+        return view("pages/pages/home-page-seg-66");
     }
 
     public function showAboutPage(){
 
-        return view("pages/pages/about-page");
+        return view("pages/pages/about-page-seg-66");
     }
     public function showViewcardPage(){
 
-        return view("pages/pages/view-card-page");
-    }
-    
-    public function switchMode(){
-        if(Session::has('light-mode')){
-            Session::pull('light-mode', "light-mode");
-            Session::put('dark-mode', "dark-mode");
-        }else{
-            Session::pull('dark-mode', "dark-mode");
-            Session::put('light-mode', "light-mode");
-        }
-
-        return redirect()->back()->with("sucesss", "Mode changed");
+        return view("pages/pages/view-card-page-seg-66");
     }
 }

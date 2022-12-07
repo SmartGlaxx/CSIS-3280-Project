@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->string('playlistName')->unique();
+            $table->string('playlistName');
             $table->string('adminUserName');
             $table->string('themeColor');
             $table->timestamps();

@@ -1,0 +1,58 @@
+@extends("pages/admin/admin-profile-seg-66")
+@section("header")
+    Smart Egbuchulem - 300333966
+@endsection
+
+@section("innerContent")
+<div class=" subPage" >
+    <div class="container movies-header" >
+        <h6>You are adding to <span>{{session('currentPlaylistData')["playlistName"]}}</span> playlist</h6>
+    </div>
+    <div>
+        @if(Session::has("success"))
+        <div class="alert alert-success">{{Session::get("success")}}</div>
+        @endif
+        @if(Session::has("failed"))
+            <div class="alert alert-danger">{{Session::get("failed")}}</div>
+        @endif
+    </div>
+    @foreach ($playlistData as $data)   
+        <?php 
+            $movieIdArray = explode("|", $playlistData["movieId"]);
+        ?>
+    @endforeach
+    <div class="container movies-container">
+        <?php $allMovie = $movies["titles"] ?>
+        @for ($i = 1; $i < count($allMovie); $i++)
+        <div class="movie-details" data-toggle="tooltip" data-placement="right" title="{{$allMovie[$i]["jawSummary"]["title"]}}">
+            <a href="" style="list-style-type:none; text-decoration:none">
+            <div><h4 class="movie-title">{{$allMovie[$i]["jawSummary"]["title"]}}</h4></div>
+            <div>
+                <img src='{{$allMovie[$i]["jawSummary"]["backgroundImage"]["url"]}}'
+                 alt='{{$allMovie[$i]["jawSummary"]["title"]}}' class="movie-img"/>
+            </div>
+            <div class="movie-year"> {{$allMovie[$i]["jawSummary"]["releaseYear"]}} </div>
+            <div class="synopsis"> {{$allMovie[$i]["jawSummary"]["synopsis"]}} 
+            </br>
+            <form method="get" action='/add-to-playlist-seg-66/{{$allMovie[$i]["jawSummary"]["id"]}}/{{session('currentPlaylistData')["id"]}}/{{session('currentThemeColor')}}/{{session('adminUserName')}}'>
+                
+                    <?php 
+                    echo in_array($allMovie[$i]["jawSummary"]["id"], $movieIdArray) ? 
+                    '<button type="submit" class="btn btn-outline-warning" name="submit">
+                    Added to playlist</button>' : 
+                    '<button type="submit" class="btn btn-outline-primary" name="submit">
+                    Add to playlist</button>';
+                    ?>
+                </button>
+            </form>
+            </div>
+        </a>
+        </div>
+        @endfor
+    </div>
+@endsection
+@include("partials/footer-seg-66")
+
+
+
+

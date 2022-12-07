@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('post');
             $table->string('reviewer');
             $table->string('movieID');
-            $table->string('movieTitle');
             $table->timestamps();
         });
     }

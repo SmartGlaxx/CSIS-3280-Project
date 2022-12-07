@@ -28,12 +28,12 @@ class UserController extends Controller
     public function userProfile($userName){
 
         if($this->auth() == false){
-            return view("pages/user/sign-in-user");
+            return view("pages/user/sign-in-user-seg-66");
         }else{
 
         $movies = Http::withHeaders([
             'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-		    'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
+		    'X-RapidAPI-Key' => 'd85143bf50msh97bf77689c9bb63p1e7484jsn68d0399f70d8'
         ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
         ['query' => "*"]);
 
@@ -44,14 +44,21 @@ class UserController extends Controller
         }
 
 
-            return view("pages/user/user-profile")->with('allMovies', $allMovies);
+            return view("pages/user/user-profile-seg-66")->with('allMovies', $allMovies);
         }
     }
 
     public function registerUserPage(){
+        if(session("userUserName")){ 
+            $username = session("userUserName");
+            return redirect("/user-profile-seg-66/" . $username );
+        } else if(session("adminUserName")){ 
+            $username = session("adminUserName");
+            return redirect("/admin-profile-seg-66/" . $username );
+        } else{ 
         $admin = Admin::get();
-        return view("pages/user/register-user", compact('admin'));
-    
+        return view("pages/user/register-user-seg-66", compact('admin'));
+        }
     }
 
     public function registerUser(Request $request){
@@ -73,6 +80,7 @@ class UserController extends Controller
             'email' => 'required | unique:users',
             'password' => 'required',
             'adminUserName' => 'required',
+            'about' => 'required',
             'phone' => 'required',
         ]);
 
@@ -82,7 +90,8 @@ class UserController extends Controller
             $user->lastName = $request->lastName;
             $user->userName = $request->userName;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $hashed_password = password_hash($request->password, PASSWORD_DEFAULT);
+            $user->password = $hashed_password;
             if(!empty($profile_picture)){
                 $user->profilePicture = $profile_picture;
             }    
@@ -103,7 +112,15 @@ class UserController extends Controller
     }
 
     public function signInUserPage(Request $request){
-        return view("pages/user/sign-in-user");
+        if(session("userUserName")){ 
+            $username = session("userUserName");
+            return redirect("/user-profile-seg-66/" . $username );
+        } else if(session("adminUserName")){ 
+            $username = session("adminUserName");
+            return redirect("/admin-profile-seg-66/" . $username );
+        } else{ 
+        return view("pages/user/sign-in-user-seg-66");
+        }
     }
       
 
@@ -115,13 +132,12 @@ class UserController extends Controller
         ]);
         $user = new User();
         $user->userName = $request->userUserName;
-        $user->password = $request->password;
+        // $user->password = $request->password;
         $userSignIn = $user->where('email','=', $user->userName)
                               ->orWhere('userName', $user->userName)
-                              ->where('password','=', $user->password)
                               ->first();
-
-        if($userSignIn != null && ($userSignIn->password == $request->password)){
+                              
+        if($userSignIn != null && (password_verify($request->password, $userSignIn["password"]))){
             $userData = $request->input();
             $request->session()->put('userUserName', $userData['userUserName']);
             $request->session()->put('userAdminsUserName', $userSignIn['adminUserName']);
@@ -134,7 +150,7 @@ class UserController extends Controller
                 session()->pull("adminUserName");
             }
 
-            return redirect("/user-profile/{$user->userName}");
+            return redirect("/user-profile-seg-66/{$user->userName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");
         }
@@ -143,10 +159,10 @@ class UserController extends Controller
 
     public function listUsers(){
         if($this->auth() == false){
-            return view("pages/admin/sign-in-admin");
+            return view("pages/admin/sign-in-admin-seg-66");
         }else{
             $data = User::get();
-            return view("pages/user/list-users", compact('data'));
+            return view("pages/user/list-users-seg-66", compact('data'));
         }
     }
 
@@ -154,7 +170,7 @@ class UserController extends Controller
         $userData = User::where('userName', '=', $userName)->first();
         $adminsData = Admin::get();
         if($userData){
-            return view("pages/user/update-user-profile")
+            return view("pages/user/update-user-profile-seg-66")
             ->with(['id' => $userData["id"],'firstName' => $userData["firstName"],'lastName' => $userData["lastName"]
             ,'userUserName' => $userData["userUserName"],'email' => $userData["email"],'phone' => $userData["phone"]
             ,'admins' => $adminsData,'profilePicture' => $userData["profilePicture"],'coverPicture' => $userData["coverPicture"]] );
@@ -195,6 +211,7 @@ class UserController extends Controller
             'adminUserName' => $request->adminUserName
         ]);
         
+                
         $request->session()->put('userProfilePicture', $profilePicture);
         $request->session()->put('userCoverPicture', $coverPicture);
         $request->session()->put('userAdminsUserName', $request->adminUserName);
@@ -217,7 +234,7 @@ class UserController extends Controller
         }
         $admin =  User::where('userName','=',$userUserName)->delete();
 
-        return redirect("/register-user")->with("success","Profile deleted. Create a new acount below");
+        return redirect("/register-user-seg-66")->with("success","Profile deleted. Create a new acount below");
     }
 
 

@@ -26,15 +26,23 @@ class AdminController extends Controller
 
     public function adminProfile(){
         if($this->auth() == false){
-            return view("pages/admin/sign-in-admin");
+            return view("pages/admin/sign-in-admin-seg-66");
         }else{
-            return view("pages/admin/admin-profile");
+            return view("pages/admin/admin-profile-seg-66");
         }
 
     }
 
     public function registerAdminPage(){
-        return view("pages/admin/register-admin");
+        if(session("userUserName")){ 
+            $username = session("userUserName");
+            return redirect("/user-profile-seg-66/" . $username );
+        } else if(session("adminUserName")){ 
+            $username = session("adminUserName");
+            return redirect("/admin-profile-seg-66/" . $username );
+        } else{ 
+        return view("pages/admin/register-admin-seg-66");
+        }
     }
 
     public function registerAdmin(Request $request){
@@ -63,7 +71,8 @@ class AdminController extends Controller
             $admin->lastName = $request->lastName;
             $admin->adminUserName = $request->adminUserName;
             $admin->email = $request->email;
-            $admin->password = $request->password;
+            $hashed_password = password_hash($request->password, PASSWORD_DEFAULT);
+            $admin->password = $hashed_password;
             if(!empty($profile_picture)){
                 $admin->profilePicture = $profile_picture;
             }    
@@ -75,7 +84,7 @@ class AdminController extends Controller
             
 
             $admin->save();
-            return redirect()->back()->with("success", "Admin addedd succesfully");
+            return redirect()->back()->with("success", "Admin registered succesfully");
         }else{
             return redirect()->back()->with("failed", "Password mismatch. Please try again");
         }
@@ -85,17 +94,25 @@ class AdminController extends Controller
 
     public function listAdmins(){
         if($this->auth() == false){
-            return view("pages/admin/sign-in-admin");
+            return view("pages/admin/sign-in-admin-seg-66");
         }else{
             $data = Admin::get();
-            return view("pages/admin/list-admins", compact('data'));
+            return view("pages/admin/list-admins-seg-66", compact('data'));
         }
         
     }
 
 
     public function signInAdminPage(){
-        return view("pages/admin/sign-in-admin");
+        if(session("userUserName")){ 
+            $username = session("userUserName");
+            return redirect("/user-profile-seg-66/" . $username );
+        } else if(session("adminUserName")){ 
+            $username = session("adminUserName");
+            return redirect("/admin-profile-seg-66/" . $username );
+        } else{ 
+        return view("pages/admin/sign-in-admin-seg-66");
+        }
     }
 
     public function signInAdmin(Request $request){
@@ -108,10 +125,9 @@ class AdminController extends Controller
         $admin->password = $request->password;
         $adminSignIn = $admin->where('email','=', $admin->adminUserName)
                               ->orWhere('adminUserName', $admin->adminUserName)
-                              ->where('password','=', $admin->password)
                               ->first();
-
-        if($adminSignIn != null && ($adminSignIn->password == $request->password)){
+        
+        if($adminSignIn != null && (password_verify($request->password, $adminSignIn["password"]))){
             $userData = $request->input();
             $request->session()->put('adminUserName', $userData['adminUserName']);
             $request->session()->put('adminProfilePicture', $adminSignIn['profilePicture']);
@@ -122,7 +138,7 @@ class AdminController extends Controller
                 session()->pull("userUserName");
             }
 
-            return redirect("/admin-profile/{$admin->adminUserName}");
+            return redirect("/admin-profile-seg-66/{$admin->adminUserName}");
         }else{
             return redirect()->back()->with("failed","Email or password incorrect");
         }
@@ -133,7 +149,7 @@ class AdminController extends Controller
     public function updateProfile($adminUserName){
         $adminData = Admin::where('adminUserName', '=', $adminUserName)->first();
 
-        return view("pages/admin/update-admin-profile")
+        return view("pages/admin/update-admin-profile-seg-66")
         ->with(['id' => $adminData["id"],'firstName' => $adminData["firstName"],'lastName' => $adminData["lastName"]
         ,'adminUserName' => $adminData["adminUserName"],'email' => $adminData["email"],'phone' => $adminData["phone"]] );
 
@@ -189,7 +205,7 @@ class AdminController extends Controller
         }
         $admin =  Admin::where('adminUserName','=',$adminUserName)->delete();
 
-        return redirect("/add-admin")->with("success","Profile deleted. Create a new acount below");
+        return redirect("/register-admin-seg-66")->with("success","Profile deleted. Create a new acount below");
     }
     
 

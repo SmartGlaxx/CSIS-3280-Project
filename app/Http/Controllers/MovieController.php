@@ -13,7 +13,7 @@ class MovieController extends Controller
     
         $movies = Http::withHeaders([
             'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-            'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
+            'X-RapidAPI-Key' => 'd85143bf50msh97bf77689c9bb63p1e7484jsn68d0399f70d8'
         ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
         ['query' => "*"]);
     
@@ -26,21 +26,13 @@ class MovieController extends Controller
     $request->session()->put('currentPlaylistData', $currentPlaylistData);
     $request->session()->put('currentThemeColor', $themeColor);
     
-    return view("pages/movie/list-movies")->with(['movies'=> json_decode($movies, true), 'playlistData'=> $playlistData]);
+    return view("pages/movie/list-movies-seg-66")->with(['movies'=> json_decode($movies, true), 'playlistData'=> $playlistData]);
 
     }
 
     public function addMovieToPlaylistPage($id, $admin, Request $request){
         $request->session()->put('playlistId', $id);
-        return view("pages/movie/list-movies")->with('playlistId',$id);
+        return view("pages/movie/list-movies-seg-66")->with('playlistId',$id);
     }
     
-
-
-    // $playlist = new Playlist();
-    //     $playlist->playlistName = 
-
-    //     $table->string('playlistName');
-    //         $table->string('adminUserName');
-    //         $table->string('themeColor');
 }

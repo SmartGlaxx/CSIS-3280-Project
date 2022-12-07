@@ -13,7 +13,7 @@ class ReviewController extends Controller
         
         $movies = Http::withHeaders([
             'X-RapidAPI-Host' => 'netflix54.p.rapidapi.com',
-		    'X-RapidAPI-Key' => 'd5d8e539c5msh99131e6fba4c1a6p1dad82jsn2dfec7e9a0b2'
+		    'X-RapidAPI-Key' => 'd85143bf50msh97bf77689c9bb63p1e7484jsn68d0399f70d8'
         ])->get('https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=200&limit_suggestions=20', 
         ['query' => "*"]);
 
@@ -21,7 +21,7 @@ class ReviewController extends Controller
         $movieData = json_decode($movies, true)["titles"];
         $movieTilte = "";
         $movieImage = "";
-        for($i = 0; $i < 50; $i++){
+        for($i = 1; $i < 50; $i++){
             $allMovies[] = $movieData[$i]["jawSummary"];
                 foreach($allMovies as $movie){
                     if($movie["id"] == $id){
@@ -30,7 +30,7 @@ class ReviewController extends Controller
                     }
                 }
         }
-        return view("pages/reviews/reviews")->with(["movieID" => $id,
+        return view("pages/reviews/reviews-seg-66")->with(["movieID" => $id,
          'reviews' => $reviews, 'movieImage' =>$movieImage, 'title' => $movieTilte]);
     }
 
@@ -59,7 +59,7 @@ class ReviewController extends Controller
 
         $review = Review::where('id','=',$id)->first();
 
-        return view("pages/reviews/update-user-reviews")->with('review', $review);
+        return view("pages/reviews/update-user-reviews-seg-66")->with('review', $review);
 
     }
 
